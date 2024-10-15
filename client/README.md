@@ -1,8 +1,44 @@
-# React + Vite
+# Orion Employment Management   
+## Description  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Features
+ 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents    
+
+* Installation & steps   
+* Steps   
+* Repository link
+* Render link
+* Contributors 
+* License    
+* Application screenshot   
+
+## Installation   
+
+Please ensure to have the following dependencies installed:    
+
+
+## Steps 
+
+
+##  Repository link  
+
+https://github.com/ssoto83/Orion-Employment-Management.git
+
+## Render link
+
+https://orion-employment-management.onrender.com
+
+## Contributors
+
+Rachel Burgos - rachelb36  
+Kimiko Dixon - Kimiko-Dixon  
+Susana Soto - ssoto83  
+Zain Ul Abid - zainabid333  
+
+## License
+This project is licensed under the MIT License.
+
+## Application screenshot  

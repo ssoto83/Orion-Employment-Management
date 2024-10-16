@@ -1,5 +1,5 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+// const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Employee, TimeOffRequest } = require("../models");
 
@@ -62,7 +62,7 @@ const resolvers = {
     terminateEmployee: async (_, { id, adminPassword }, context) => {
       if (context.user && context.user.role === "admin") {
         const admin = await User.findById(context.user._id);
-        const isCorrect = await bcrypt.compare(adminPassword, admin.password);
+        // const isCorrect = await bcrypt.compare(adminPassword, admin.password);
         if (isCorrect) {
           await Employee.findByIdAndUpdate(id, { isActive: false });
           return true;

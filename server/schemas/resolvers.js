@@ -1,81 +1,7 @@
-const { gql } = require("apollo-server-express");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-// Assume we have these models
-const { User, Employee, TimeOffRequest } = require("./models");
-
-const typeDefs = gql`
-  type User {
-    _id: ID!
-    username: String!
-    email: String!
-    role: String!
-  }
-
-  type Employee {
-    _id: ID!
-    firstName: String!
-    lastName: String!
-    address: String!
-    phoneNumber: String!
-    email: String!
-    ssn: String!
-    position: String!
-    pay: Float!
-    startDate: String!
-    isActive: Boolean!
-  }
-
-  type TimeOffRequest {
-    _id: ID!
-    employee: Employee!
-    startDate: String!
-    endDate: String!
-    status: String!
-  }
-
-  type Auth {
-    token: ID!
-    user: User
-  }
-
-  type Query {
-    me: User
-    employees(searchTerm: String, searchBy: String): [Employee]
-    employee(id: ID!): Employee
-    timeOffRequests: [TimeOffRequest]
-  }
-
-  type Mutation {
-    login(email: String!, password: String!): Auth
-    addEmployee(
-      firstName: String!
-      lastName: String!
-      address: String!
-      phoneNumber: String!
-      email: String!
-      ssn: String!
-      position: String!
-      pay: Float!
-      startDate: String!
-    ): Employee
-    updateEmployee(
-      id: ID!
-      firstName: String
-      lastName: String
-      ssn: String
-      position: String
-      pay: Float
-    ): Employee
-    terminateEmployee(id: ID!, adminPassword: String!): Boolean
-    createTimeOffRequest(
-      employeeId: ID!
-      startDate: String!
-      endDate: String!
-    ): TimeOffRequest
-    updateTimeOffRequestStatus(requestId: ID!, status: String!): TimeOffRequest
-  }
-`;
+// const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
+const { AuthenticationError } = require("apollo-server-express");
+const { User, Employee, TimeOffRequest } = require("../models");
 
 const resolvers = {
   Query: {
@@ -136,7 +62,7 @@ const resolvers = {
     terminateEmployee: async (_, { id, adminPassword }, context) => {
       if (context.user && context.user.role === "admin") {
         const admin = await User.findById(context.user._id);
-        const isCorrect = await bcrypt.compare(adminPassword, admin.password);
+        // const isCorrect = await bcrypt.compare(adminPassword, admin.password);
         if (isCorrect) {
           await Employee.findByIdAndUpdate(id, { isActive: false });
           return true;
@@ -162,4 +88,4 @@ const resolvers = {
   },
 };
 
-module.exports = { typeDefs, resolvers };
+module.exports = resolvers;

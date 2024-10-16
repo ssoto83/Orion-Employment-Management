@@ -13,8 +13,7 @@ import TimeOffPage from './pages/timeOffPage';
 //Import Modals
 import AddEmployeeModal from './components/addEmployeeModal';
 import EmployeeCredModal from './components/employeeCredModal';
-//import EmployeeSearch from './components/employeeSearch';
-//import TimeOffRequest from './components/timeOffRequest';
+
 
 // Link to GraphQL
 const httpLink = createHttpLink({
@@ -29,27 +28,14 @@ const client = new ApolloClient({
 
 function App() {
 
-  const [isAddEmployeeModalOpen, setAddEmployeeModalOpen] = useState(false);
-  const [isEmployeeCredModalOpen, setEmployeeCredModalOpen] = useState(false);
-  //const [isEmployeeSearchModalOpen, setEmployeeSearchModalOpen]= useState(false);
-  //const [isTimeOffRequestModalOpen, setTimeOffRequestModalOpen] = useState(false);
+    const [isAddEmployeeModalOpen, setAddEmployeeModalOpen] = useState(false);
+    const [isEmployeeCredModalOpen, setEmployeeCredModalOpen] = useState(false);
 
    return (
     <ApolloProvider client={client}>
        <Router>
         <Nav/>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/employee/:id" element={<EmployeeInfoPage />} />
-          <Route path="/employee" element={<EmployeesPage 
-              onAddEmployee={() => setAddEmployeeModalOpen(true)}
-          />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/time-off" element={<TimeOffPage
-          onRequestTimeOff={() => setTimeOffRequestModalOpen(true)}
-          />} />
-        </Routes>
-        
+             
         <AddEmployeeModal
             isOpen={isAddEmployeeModalOpen}
             onClose={() =>setAddEmployeeModalOpen(false)}
@@ -59,16 +45,6 @@ function App() {
             isOpen={isEmployeeCredModalOpen}
             onClose={() =>setEmployeeCredModalOpen(false)}
         />
-
-        {/* <EmployeeSearch
-            isOpen={isEmployeeSearchModalOpen} 
-            onClose={() => setEmployeeSearchModalOpen(false)} 
-        />
-
-        <TimeOffRequest
-            isOpen={isTimeOffRequestModalOpen}
-            isClose={() => setTimeOffRequestModalOpen(false)}
-        /> */}
 
         <Outlet />
        </Router>

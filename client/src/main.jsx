@@ -21,19 +21,19 @@ const router = createBrowserRouter([
         element: <Dashboard />
       }, 
       {
-        path: '/employeesPage',
+        path: 'employees',
         element: <EmployeesPage />
       }, 
       {
-        path: '/employeeInfoPage',
+        path: 'employee/:id',
         element: <EmployeeInfoPage/>
       },
       {
-        path: '/loginPage',
+        path: 'login',
         element: <LoginPage/>
       },
       {
-        path: '/timeOffPage',
+        path: 'timeOff',
         element: <TimeOffPage/>
       },
     ],

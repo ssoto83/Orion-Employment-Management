@@ -18,7 +18,7 @@ const Header = ({ isLoggedIn, onLogout }) => {
       >
         {/* Direct reference to logo in the public folder */}
         <img
-          src='/orion_logo.png' // Use relative path to public folder
+          src='.assets/orion_logo.png' // Use relative path to public folder
           alt='Orion Employee Management Logo'
           style={{ width: '435px', height: '125px' }}
         />

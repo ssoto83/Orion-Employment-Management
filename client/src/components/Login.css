@@ -1,0 +1,31 @@
+.loginpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+.login-box h2 {
+  color: '#f57369';
+}
+
+.login-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 40px;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.login-box {
+  border: 2px solid #3ca7c2;
+}
+
+.login-box {
+  border: 2px solid #3ca7c2;
+}

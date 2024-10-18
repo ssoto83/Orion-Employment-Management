@@ -1,8 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Login from '../components/Login';
-import '../App.css';
-
+import 'LoginPage.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -11,9 +10,9 @@ const LoginPage = () => {
   const handleLogin = (role) => {
     // Simulate login process
     if (role === 'employee') {
-      localStorage.setItem('token', 'employeeToken'); 
-      localStorage.setItem('role', 'employee'); 
-      navigate('/Dashboard'); 
+      localStorage.setItem('token', 'employeeToken');
+      localStorage.setItem('role', 'employee');
+      navigate('/Dashboard');
     } else if (role === 'admin') {
       localStorage.setItem('token', 'adminToken'); // Simulate storing a token
       localStorage.setItem('role', 'user'); // Set role

@@ -73,7 +73,7 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                ****repeat password and make sure they match
+
                 <button type='submit' variant='contained'>
                   Submit
                 </button>

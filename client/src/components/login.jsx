@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../utils/auth';
+import './login.css';
 
 const Login = ({ title, onLogin }) => {
   const [email, setEmail] = useState('');

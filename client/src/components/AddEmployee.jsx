@@ -36,7 +36,7 @@ const AddEmployee = ({ isEdit, employeeData, onClose }) => {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, photo: e.target.files[0] }); // File upload handling
+    setFormData({ ...formData, photo: e.target.files[0] });
   };
 
   const handleSubmit = async (e) => {

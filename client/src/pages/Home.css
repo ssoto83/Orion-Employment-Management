@@ -1,3 +1,10 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
 .home {
   height: 100vh;
   background-image: url('project3_bg.png');
@@ -25,30 +32,4 @@
   margin-right: 40px;
 }
 
-.login-boxes {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 100px;
-}
 
-.login-box {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 40px;
-  border-radius: 8px;
-  width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.error-message {
-  color: red;
-  margin-bottom: 10px;
-}
-
-.login-box {
-  border: 2px solid #3ca7c2;
-}
-
-.login-box {
-  border: 2px solid #3ca7c2;
-}

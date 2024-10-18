@@ -2,10 +2,10 @@ import React from 'react';
 import Header from '../components/Header';
 import { TextField, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import './pages/Home.css';
+import 'Home.css';
 import Navbar from '../components/Navbar';
 import LoginPage from './LoginPage';
-import Login from '../components/Login';
+import 'Home.css';
 
 const Home = () => {
   const navigate = useNavigate();

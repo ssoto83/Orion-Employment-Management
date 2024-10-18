@@ -11,13 +11,13 @@ const LoginPage = () => {
   const handleLogin = (role) => {
     // Simulate login process
     if (role === 'employee') {
-      localStorage.setItem('token', 'employeeToken'); // Simulate storing a token
-      localStorage.setItem('role', 'employee'); // Set role
-      navigate('/dashboard'); // Navigate to the employee dashboard
+      localStorage.setItem('token', 'employeeToken'); 
+      localStorage.setItem('role', 'employee'); 
+      navigate('/Dashboard'); 
     } else if (role === 'admin') {
       localStorage.setItem('token', 'adminToken'); // Simulate storing a token
       localStorage.setItem('role', 'user'); // Set role
-      navigate('/dashboard'); // Navigate to the admin dashboard
+      navigate('/Dashboard'); // Navigate to the admin dashboard
     }
   };
 

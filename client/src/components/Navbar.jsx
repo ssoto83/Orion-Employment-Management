@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Button, Box } from '@mui/material';
+import { Button, Box } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = ({ isLoggedIn, onLogout }) => {

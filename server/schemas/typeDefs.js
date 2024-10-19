@@ -1,3 +1,5 @@
+// Import the gql tagged template function.  Added by RB on 101824
+const { gql } = require('apollo-server-express');
 
 const typeDefs = `
   type User {
@@ -21,7 +23,35 @@ const typeDefs = `
     isActive: Boolean!
   }
 
-  type TimeOffRequest {
+
+  type Event {
+    id: ID!
+    name: String!
+    date: String!
+    description: String!
+    photo: String!
+  }
+
+  input EventInput {
+    name: String!
+    date: String!
+    description: String!
+    photo: String!
+  }
+
+  type Query {
+    events: [Event!]!
+    event(id: ID!): Event
+  }
+
+  type Mutation {
+    addEvent(input: EventInput!): Event
+    updateEvent(id: ID!, input: EventInput!): Event
+    deleteEvent(id: ID!): Boolean
+  
+    }
+
+    type TimeOffRequest {
     _id: ID!
     employee: Employee!
     startDate: String!

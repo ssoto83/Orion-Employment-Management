@@ -4,7 +4,7 @@ import React { useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
 import { Employee } from '../../../server/models';
 
-const EmployeeRegistration = () => {
+const Register = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -75,4 +75,4 @@ const EmployeeRegistration = () => {
   );
 };
 
-export default EmployeeRegistration;
+export default Register;

@@ -1,65 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client'; // Fixed import statement
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import <'index.css' />
+import './index.css'; // Ensure the path is correct for your CSS
 import App from './App.jsx';
-import {Home, AddEmployee, Dashboard, Register from './pages/Home';
-import { AddEmployee, Register, EmployeeUpdate, AddEmployee, RequestTimeOff, Register } from './pages/';
-import Dashboard from './pages/Dashboard';
-import EmployeeUpdate from './pages/EmployeeUpdate.jsx';
-
-
-import NotFound from './pages/NotFound';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: <NotFound />,
-    children: [
-      {
-        index: true,
-        element: <Home />
-      }, {
-        path: '/login',
-        element: <LoginPage />
-      }, {
-        path: '/register/:id',
-        element: <Register />
-      },
-      {
-        path: '/register/:id',
-        element: <Register />
-      },
-    ],
-  },
-]);
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
-);
-
-
-
-
-
-
-
-
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App';
+import ErrorPage from './pages/ErrorPage'; // Import individual components correctly
 import Home from './pages/Home';
-import Signup from './pages/Signup';
-import Login from './pages/LoginPage';
-import ErrorPage from './pages/ErrorPage';
+import EmployeeUpdate from './pages/EmployeeUpdate';
+import AddEmployee from './pages/AddEmployee';
+import RequestTimeOff from './pages/RequestTimeOff';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import CompanyEvents from './pages/CompanyEvents';
+import LoginPage from './pages/LoginPage'; // Add LoginPage import
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <ErrorPage />,
+    errorElement: <NotFound />, // Properly use NotFound for unknown routes
     children: [
       {
         index: true,
@@ -67,22 +25,41 @@ const router = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <Login />,
+        element: <LoginPage />, // Added missing LoginPage element
       },
       {
-        path: '/signup',
-        element: <Signup />,
+        path: '/register/:id',
+        element: <Register />,
       },
       {
-        path: '/signup',
-        element: <Signup />,
+        path: '/addemployee',
+        element: <AddEmployee />,
+      },
+      {
+        path: '/events',
+        element: <CompanyEvents />,
+      },
+      {
+        path: '/timeoff/:id',
+        element: <RequestTimeOff />,
+      },
+      {
+        path: '/update/:id',
+        element: <EmployeeUpdate />,
+      },
+      {
+        path: '/error',
+        element: <ErrorPage />,
+      },
+      {
+        path: '/dashboard',
+        element: <Dashboard />,
       },
     ],
   },
 ]);
 
+// Use createRoot to correctly render the app
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <RouterProvider router={router} />
 );

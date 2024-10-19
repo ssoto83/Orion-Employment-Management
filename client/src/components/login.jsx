@@ -1,87 +1,113 @@
-import React, { useState } from 'react';
+import React { useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../utils/auth';
-import './login.css';
+import './Login.css';
 
-const Login = ({ title, onLogin }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
-  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Validate input fields
-    if (!email || !password) {
-      setError('Email and Password are required.');
-      return;
-    }
 
+***************
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
+
+const Login = (props) => {
+  const [formState, setFormState] = useState({ username: '', password: '' });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
     try {
-      const token = await Auth.login(email, password);
+      const { data } = await login({
+        variables: { ...formState },
+      });
 
-      // If login is successful, simulate storing the token and role
-      if (token) {
-        localStorage.setItem('token', token);
-        localStorage.setItem(
-          'role',
-          title === 'Employee Login' ? 'employee' : 'user'
-        );
-        onLogin(); // Call the onLogin function passed as a prop
-        navigate('/dashboard'); // Redirect to dashboard
-      }
-    } catch (err) {
-      setError('Invalid email or password.'); // Handle login error
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
     }
+
+    // clear form values
+    setFormState({
+      firstName: '',
+      lastName: '',
+      address: '',
+      phoneNumber:'',
+      email: '',
+      ssn: '',
+      position: '',
+      pay: '',
+      password: '',
+      StartDate: '',
+      isActive: 'false',
+
+    });
   };
 
   return (
-    <Box
-      className='login-form'
-      sx={{
-        padding: '20px',
-        border: '1px solid #ddd',
-        borderRadius: '8px',
-        marginBottom: '20px',
-      }}
-    >
-      <h2>{title}</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}{' '}
-      {/* Display error if present */}
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label='Email'
-          variant='outlined'
-          fullWidth
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          margin='normal'
-        />
-        <TextField
-          label='Password'
-          type='password'
-          variant='outlined'
-          fullWidth
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          margin='normal'
-        />
-        <Button
-          type='submit'
-          variant='contained'
-          color='primary'
-          fullWidth
-          sx={{ marginTop: '10px' }}
-        >
-          Login
-        </Button>
-      </form>
-    </Box>
+    <Box>
+      {data ? (
+              <p>
+                New Employee?  {' '}
+                <Link to="/Registration"></Link>
+              </p>
+            ) : (
+              <form onSubmit={handleFormSubmit}>
+                <input
+                  className="form-input"
+                  placeholder="Your email"
+                  name="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                />
+                <input
+                  className="form-input"
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  value={formState.password}
+                  onChange={handleChange}
+                />
+                <button
+                  className=""
+                  style={{ cursor: 'pointer' }}
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </form>
+            )}
+
+            {error && (
+              <div className="">
+                {error.message}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </main>
   );
 };
+</box >
 
 export default Login;
+
+
+

@@ -14,6 +14,7 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
   };
 
   return (
+    <h1>NavBar</h1>
     <Box>
       <nav
         style={{

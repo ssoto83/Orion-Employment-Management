@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React { useState, useEffect } from 'react';
 import { TextField, Box, Button } from '@mui/material';
 import Modal from '@mui/material/Modal';
+import { useMutation } from '@apollo/client'; 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import '../index.css';
+
 
 const AddEmployee = ({ isEdit, employeeData, onClose }) => {
   const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const AddEmployee = ({ isEdit, employeeData, onClose }) => {
     position: '',
     pay: '',
     startDate: null,
-    photo: null, // for profile image
+    // photo: null, // for profile image
     ...employeeData, // populate form if editing employee
   });
 
@@ -35,9 +36,9 @@ const AddEmployee = ({ isEdit, employeeData, onClose }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, photo: e.target.files[0] });
-  };
+  // const handleFileChange = (e) => {
+  //   setFormData({ ...formData, photo: e.target.files[0] });
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,6 +66,7 @@ const AddEmployee = ({ isEdit, employeeData, onClose }) => {
   };
 
   return (
+    <h1>Add Employee</h1>
     <Modal open={true} onClose={onClose}>
       <Box
         className='employee-form'
@@ -164,7 +166,7 @@ const AddEmployee = ({ isEdit, employeeData, onClose }) => {
             />
           </LocalizationProvider>
 
-          <Button
+          {/* <Button
             variant='contained'
             component='label'
             fullWidth
@@ -172,7 +174,7 @@ const AddEmployee = ({ isEdit, employeeData, onClose }) => {
           >
             Upload Profile Picture
             <input type='file' hidden onChange={handleFileChange} />
-          </Button>
+          </Button> */}
 
           <Button
             variant='contained'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React { useState } from 'react';
 import { Calendar } from 'react-calendar';
 import { Button, TextField, Box } from '@mui/material';
 import 'react-calendar/dist/Calendar.css';
@@ -23,6 +23,7 @@ const EmployeeEvents = ({ events, onEventSubmit }) => {
   };
 
   return (
+    <h1>Employee Events</h1>
     <div>
       <h2>Upcoming Events</h2>
       <Calendar onChange={setSelectedDate} value={selectedDate} />

@@ -1,10 +1,11 @@
-import React from 'react';
+import React from 'react'; // Import react
 import Navbar from './Navbar';
 import { Box } from '@mui/material'; // Import Box from Material-UI
 
 // The Header component takes isLoggedIn and onLogout props
 const Header = ({ isLoggedIn, onLogout }) => {
   return (
+    <h1>Header</h1>
     <Box>
       <header
         style={{

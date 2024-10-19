@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React { useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
+import { GET_EMPLOYEES } from "../utils/queries";
 
 const EmployeeUpdate = ({ employeeData, onUpdate }) => {
   const [formData, setFormData] = useState(employeeData);
@@ -16,6 +17,7 @@ const EmployeeUpdate = ({ employeeData, onUpdate }) => {
   };
 
   return (
+    <h1>Employee Update</h1>
     <Box sx={{ padding: '20px' }}>
       <h2>View and Update Profile</h2>
       <form onSubmit={handleSubmit}>

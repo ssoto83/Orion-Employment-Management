@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { SIGNUP } from '../utils/mutations';
-import React, { useState } from 'react';
+import React { useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
 import { Employee } from '../../../server/models';
 
@@ -35,6 +35,7 @@ const EmployeeRegistration = () => {
   };
 
   return (
+    <h1>Employee Registration</h1>
     <Box sx={{ padding: '20px' }}>
       <form onSubmit={handleSubmit}>
         <h2>Sign Up</h2>

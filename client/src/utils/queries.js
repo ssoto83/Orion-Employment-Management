@@ -27,14 +27,14 @@ export const GET_EMPLOYEE_BY_ID = gql`
   }
 `;
 
-// Get all events
-export const GET_EVENTS = gql`
-  query GetEvents {
-    events {
-      id
-      name
-      date
-      photo
-    }
-  }
-`;
+// // Get all events
+// export const GET_EVENTS = gql`
+//   query GetEvents {
+//     events {
+//       id
+//       name
+//       date
+//       photo
+//     }
+//   }
+// `;

@@ -1,22 +1,21 @@
-import React { useState, useEffect } from 'react';
-import { TextField, Box, Button } from '@mui/material';
-import Modal from '@mui/material/Modal';
-import { useMutation } from '@apollo/client'; 
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-
+import React, { useState, useEffect } from "react";
+import { TextField, Box, Button } from "@mui/material";
+import Modal from "@mui/material/Modal";
+import { useMutation } from "@apollo/client";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const AddEmployee = ({ isEdit, employeeData, onClose }) => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    address: '',
-    phoneNumber: '',
-    email: '',
-    ssn: '',
-    position: '',
-    pay: '',
+    firstName: "",
+    lastName: "",
+    address: "",
+    phoneNumber: "",
+    email: "",
+    ssn: "",
+    position: "",
+    pay: "",
     startDate: null,
     // photo: null, // for profile image
     ...employeeData, // populate form if editing employee
@@ -50,123 +49,124 @@ const AddEmployee = ({ isEdit, employeeData, onClose }) => {
       }
 
       // Post form data to server
-      const response = await fetch('/api/employees', {
-        method: 'POST',
+      const response = await fetch("/api/employees", {
+        method: "POST",
         body: formDataToSend, // sending form data
       });
 
       if (response.ok) {
         onClose(); // Close modal on success
       } else {
-        console.error('Error saving employee data:', response.statusText);
+        console.error("Error saving employee data:", response.statusText);
       }
     } catch (error) {
-      console.error('Error saving employee data:', error);
+      console.error("Error saving employee data:", error);
     }
   };
 
   return (
-    <h1>Add Employee</h1>
-    <Modal open={true} onClose={onClose}>
-      <Box
-        className='employee-form'
-        sx={{
-          padding: '40px',
-          maxWidth: '600px',
-          margin: 'auto',
-          marginTop: '100px',
-          bgcolor: 'background.paper',
-        }}
-      >
-        <h2>{isEdit ? 'Edit Employee' : 'Add Employee'}</h2>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            name='firstName'
-            label='First Name'
-            variant='outlined'
-            fullWidth
-            value={formData.firstName}
-            onChange={handleInputChange}
-            margin='normal'
-          />
-          <TextField
-            name='lastName'
-            label='Last Name'
-            variant='outlined'
-            fullWidth
-            value={formData.lastName}
-            onChange={handleInputChange}
-            margin='normal'
-          />
-          <TextField
-            name='address'
-            label='Address'
-            variant='outlined'
-            fullWidth
-            value={formData.address}
-            onChange={handleInputChange}
-            margin='normal'
-          />
-          <TextField
-            name='phoneNumber'
-            label='Phone Number'
-            variant='outlined'
-            fullWidth
-            value={formData.phoneNumber}
-            onChange={handleInputChange}
-            margin='normal'
-          />
-          <TextField
-            name='email'
-            label='Email'
-            variant='outlined'
-            fullWidth
-            value={formData.email}
-            onChange={handleInputChange}
-            margin='normal'
-          />
-          <TextField
-            name='ssn'
-            label='SSN'
-            variant='outlined'
-            fullWidth
-            value={formData.ssn}
-            onChange={handleInputChange}
-            margin='normal'
-          />
-          <TextField
-            name='position'
-            label='Position'
-            variant='outlined'
-            fullWidth
-            value={formData.position}
-            onChange={handleInputChange}
-            margin='normal'
-          />
-          <TextField
-            name='pay'
-            label='Pay'
-            variant='outlined'
-            fullWidth
-            value={formData.pay}
-            onChange={handleInputChange}
-            margin='normal'
-          />
-
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              label='Start Date'
-              value={formData.startDate}
-              onChange={(newValue) =>
-                setFormData({ ...formData, startDate: newValue })
-              }
-              renderInput={(params) => (
-                <TextField {...params} fullWidth margin='normal' />
-              )}
+    <>
+      <h1>Add Employee</h1>
+      <Modal open={true} onClose={onClose}>
+        <Box
+          className="employee-form"
+          sx={{
+            padding: "40px",
+            maxWidth: "600px",
+            margin: "auto",
+            marginTop: "100px",
+            bgcolor: "background.paper",
+          }}
+        >
+          <h2>{isEdit ? "Edit Employee" : "Add Employee"}</h2>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              name="firstName"
+              label="First Name"
+              variant="outlined"
+              fullWidth
+              value={formData.firstName}
+              onChange={handleInputChange}
+              margin="normal"
             />
-          </LocalizationProvider>
+            <TextField
+              name="lastName"
+              label="Last Name"
+              variant="outlined"
+              fullWidth
+              value={formData.lastName}
+              onChange={handleInputChange}
+              margin="normal"
+            />
+            <TextField
+              name="address"
+              label="Address"
+              variant="outlined"
+              fullWidth
+              value={formData.address}
+              onChange={handleInputChange}
+              margin="normal"
+            />
+            <TextField
+              name="phoneNumber"
+              label="Phone Number"
+              variant="outlined"
+              fullWidth
+              value={formData.phoneNumber}
+              onChange={handleInputChange}
+              margin="normal"
+            />
+            <TextField
+              name="email"
+              label="Email"
+              variant="outlined"
+              fullWidth
+              value={formData.email}
+              onChange={handleInputChange}
+              margin="normal"
+            />
+            <TextField
+              name="ssn"
+              label="SSN"
+              variant="outlined"
+              fullWidth
+              value={formData.ssn}
+              onChange={handleInputChange}
+              margin="normal"
+            />
+            <TextField
+              name="position"
+              label="Position"
+              variant="outlined"
+              fullWidth
+              value={formData.position}
+              onChange={handleInputChange}
+              margin="normal"
+            />
+            <TextField
+              name="pay"
+              label="Pay"
+              variant="outlined"
+              fullWidth
+              value={formData.pay}
+              onChange={handleInputChange}
+              margin="normal"
+            />
 
-          {/* <Button
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                label="Start Date"
+                value={formData.startDate}
+                onChange={(newValue) =>
+                  setFormData({ ...formData, startDate: newValue })
+                }
+                renderInput={(params) => (
+                  <TextField {...params} fullWidth margin="normal" />
+                )}
+              />
+            </LocalizationProvider>
+
+            {/* <Button
             variant='contained'
             component='label'
             fullWidth
@@ -176,17 +176,18 @@ const AddEmployee = ({ isEdit, employeeData, onClose }) => {
             <input type='file' hidden onChange={handleFileChange} />
           </Button> */}
 
-          <Button
-            variant='contained'
-            type='submit'
-            fullWidth
-            sx={{ marginTop: '20px' }}
-          >
-            {isEdit ? 'Save Changes' : 'Add Employee'}
-          </Button>
-        </form>
-      </Box>
-    </Modal>
+            <Button
+              variant="contained"
+              type="submit"
+              fullWidth
+              sx={{ marginTop: "20px" }}
+            >
+              {isEdit ? "Save Changes" : "Add Employee"}
+            </Button>
+          </form>
+        </Box>
+      </Modal>
+    </>
   );
 };
 

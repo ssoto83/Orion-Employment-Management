@@ -14,8 +14,8 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
   };
 
   return (
-    <h1>NavBar</h1>
     <Box>
+      <h1>NavBar</h1>
       <nav
         style={{
           display: 'flex',

@@ -58,32 +58,32 @@ export default App;
 
 
 
-import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
-import { } from './pages;
-import Dashboard from './pages/Dashboard';
-import LoginPage from './pages/LoginPage';
-import Header from './components/Header'; // Import Header
+// import React, { useState, useEffect } from 'react';
+// import { Outlet } from 'react-router-dom';
+// import { } from './pages;
+// import Dashboard from './pages/Dashboard';
+// import LoginPage from './pages/LoginPage';
+// import Header from './components/Header'; // Import Header
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+// function App() {
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
-  }, []);
+//   useEffect(() => {
+//     const token = localStorage.getItem('token');
+//     setIsLoggedIn(!!token);
+//   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-  };
+//   const handleLogout = () => {
+//     localStorage.removeItem('token');
+//     setIsLoggedIn(false);
+//   };
 
-  return (
-    <>
-      <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-      <Outlet /> {/* This will render the children routes */}
-    </>
-  );
-}
+//   return (
+//     <>
+//       <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+//       <Outlet /> {/* This will render the children routes */}
+//     </>
+//   );
+// }
 
-export default App;
+// export default App;

@@ -1,6 +1,5 @@
 // seeds/timeOffRequestsData.js
 const mongoose = require('mongoose');
-const db = require('../config/connection');
 const TimeOffRequest = require('../models/TimeOffRequest');
 
 const timeOffRequestData = [
@@ -33,7 +32,7 @@ const seedTimeOffRequests = async () => {
     });
 
     await TimeOffRequest.deleteMany({});
-    await TimeOffRequest.insertMany(eventData);
+    await TimeOffRequest.insertMany(timeOffRequestData);
 
     console.log('Time off request seeded successfully!');
     mongoose.connection.close();

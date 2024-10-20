@@ -6,8 +6,8 @@ import Home from '../pages/Home';
 // The Header component takes isLoggedIn and onLogout props
 const Header = ({ isLoggedIn, onLogout }) => {
   return (
-    <h1>Header</h1>
     <Box>
+      <h1>Header</h1>
       <header
         style={{
           display: 'flex',

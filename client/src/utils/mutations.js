@@ -52,3 +52,29 @@ export const ADD_EVENT = gql`
     }
   }
 `;
+
+// Login user
+export const LOGIN_USER = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        id
+        username
+        email
+      }
+    }
+  }
+`;
+
+// Define the SIGNUP mutation
+export const SIGNUP = gql`
+  mutation Signup($input: SignupInput!) {
+    signup(input: $input) {
+      id
+      username
+      email
+      token
+    }
+  }
+`;

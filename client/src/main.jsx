@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client'; // Fixed import statement
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css'; // Ensure the path is correct for your CSS
@@ -9,15 +8,15 @@ import EmployeeUpdate from './pages/EmployeeUpdate';
 import AddEmployee from './pages/AddEmployee';
 import RequestTimeOff from './pages/RequestTimeOff';
 import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/dashboard';
 import CompanyEvents from './pages/CompanyEvents';
-import LoginPage from './pages/LoginPage'; // Add LoginPage import
+import LoginPage from './pages/loginPage'; // Add LoginPage import
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <NotFound />, // Properly use NotFound for unknown routes
+    //errorElement: <NotFound />, // Properly use NotFound for unknown routes
     children: [
       {
         index: true,

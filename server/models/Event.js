@@ -49,5 +49,9 @@ const eventSchema = new mongoose.Schema({
     default: true,
   },
 });
-const Employee = mongoose.model("Employee", employeeSchema);
-module.exports = Employee;
+// const Employee = mongoose.model("Employee", employeeSchema);
+// module.exports = Employee;
+
+const Event = mongoose.model("Event", eventSchema);
+
+module.exports = Event;

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
-    "seed": "node seeds/employeeSeeds.js" && "node seeds/eventSeeds.js" && "node seeds/timeoff.js",
+    "seed": "node server/seeds/employeeSeeds.js && node server/seeds/eventSeeds.js && node server/seeds/timeOffRequestsSeeds.js",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
     "render-build": "npm install && npm run build"
@@ -16,8 +16,5 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.0"
-  },
-  "dependencies": {
-    "react-calendar": "^5.0.0"
   }
 }

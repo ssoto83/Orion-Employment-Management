@@ -78,3 +78,11 @@ export const SIGNUP = gql`
     }
   }
 `;
+
+export const CREATE_TIMEOFFREQUEST = gql`
+  mutation createTimeOffRequest($input: TimeOffRequestInput!) {
+    createTimeOffRequest(input: $input) {
+      id
+    }
+  }
+`;

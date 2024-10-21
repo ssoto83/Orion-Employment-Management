@@ -23,35 +23,19 @@ const typeDefs = `
     isActive: Boolean!
   }
 
-
-  type Event {
-    id: ID!
-    name: String!
-    date: String!
-    description: String!
-    photo: String!
+   input EmployeeInfo {
+     firstName: String!
+      lastName: String!
+      address: String!
+      phoneNumber: String!
+      email: String!
+      ssn: String!
+      position: String!
+      pay: Float!
+      startDate: String!
   }
 
-  input EventInput {
-    name: String!
-    date: String!
-    description: String!
-    photo: String!
-  }
-
-  type Query {
-    events: [Event!]!
-    event(id: ID!): Event
-  }
-
-  type Mutation {
-    addEvent(input: EventInput!): Event
-    updateEvent(id: ID!, input: EventInput!): Event
-    deleteEvent(id: ID!): Boolean
-  
-    }
-
-    type TimeOffRequest {
+      type TimeOffRequest {
     _id: ID!
     employee: Employee!
     startDate: String!
@@ -66,35 +50,26 @@ const typeDefs = `
 
   type Query {
     me: User
-    employees(searchTerm: String, searchBy: String): [Employee]
-    employee(id: ID!): Employee
+    employees: [Employee]
+    employee(userId: ID!): Employee
     timeOffRequests: [TimeOffRequest]
   }
 
   type Mutation {
-    login(email: String!, password: String!): Auth
-    addEmployee(
-      firstName: String!
-      lastName: String!
-      address: String!
-      phoneNumber: String!
-      email: String!
-      ssn: String!
-      position: String!
-      pay: Float!
-      startDate: String!
-    ): Employee
+    login(username: String!, password: String!): Auth
+    signup(email: String!, username: String!, password: String!): Auth
+    addEmployee(employee: EmployeeInfo!): Employee
     updateEmployee(
-      id: ID!
+      empId: ID!
       firstName: String
       lastName: String
       ssn: String
       position: String
       pay: Float
     ): Employee
-    terminateEmployee(id: ID!, adminPassword: String!): Boolean
+    terminateEmployee(userId: ID!): Employee
     createTimeOffRequest(
-      employeeId: ID!
+      empId: ID!
       startDate: String!
       endDate: String!
     ): TimeOffRequest

@@ -47,6 +47,14 @@ const employeeSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user"
+  },
+  timeOffRequests: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "timeOffRequests"
+  }
 });
-const Employee = mongoose.model("Employee", employeeSchema);
+const Employee = mongoose.model("employee", employeeSchema);
 module.exports = Employee;

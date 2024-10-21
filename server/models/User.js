@@ -9,22 +9,21 @@ const userSchema = new mongoose.Schema({
     unique: true,
     trim: true,
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    match: [/.+@.+\..+/, "Must match an email address!"],
-  },
+  // email: {
+  //   type: String,
+  //   required: true,
+  //   unique: true,
+  //   match: [/.+@.+\..+/, "Must match an email address!"],
+  // },
   password: {
     type: String,
     required: true,
     minlength: 5,
   },
-  role: {
-    type: String,
+  isAdmin: {
+    type: Boolean,
     required: true,
-    enum: ["admin", "employee"],
-    default: "employee",
+    default: false,
   },
 });
 
@@ -41,5 +40,5 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("user", userSchema);
 module.exports = User;

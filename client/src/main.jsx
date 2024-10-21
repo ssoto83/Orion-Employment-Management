@@ -4,19 +4,15 @@ import './index.css'; // Ensure the path is correct for your CSS
 import App from './App.jsx';
 import ErrorPage from './pages/ErrorPage'; // Import individual components correctly
 import Home from './pages/Home';
-import EmployeeUpdate from './pages/EmployeeUpdate';
-import AddEmployee from './pages/AddEmployee';
-import RequestTimeOff from './pages/RequestTimeOff';
-import Register from './pages/Register';
-import Dashboard from './pages/dashboard';
-import CompanyEvents from './pages/CompanyEvents';
 import LoginPage from './pages/loginPage'; // Add LoginPage import
+import EmployeesPage from './pages/employeesPage.jsx';
+import TimeOffPage from './pages/timeOffPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    //errorElement: <NotFound />, // Properly use NotFound for unknown routes
+    errorElement:<ErrorPage />,
     children: [
       {
         index: true,
@@ -27,32 +23,12 @@ const router = createBrowserRouter([
         element: <LoginPage />, // Added missing LoginPage element
       },
       {
-        path: '/register/:id',
-        element: <Register />,
+        path: '/employee',
+        element: <EmployeesPage />,
       },
       {
-        path: '/addemployee',
-        element: <AddEmployee />,
-      },
-      {
-        path: '/events',
-        element: <CompanyEvents />,
-      },
-      {
-        path: '/timeoff/:id',
-        element: <RequestTimeOff />,
-      },
-      {
-        path: '/update/:id',
-        element: <EmployeeUpdate />,
-      },
-      {
-        path: '/error',
-        element: <ErrorPage />,
-      },
-      {
-        path: '/dashboard',
-        element: <Dashboard />,
+        path: '/timeoff',
+        element: <TimeOffPage />,
       },
     ],
   },

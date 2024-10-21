@@ -1,149 +1,137 @@
 // Added Events and refactored RB 101824
-
-const { AuthenticationError } = require('apollo-server-express');
-const { Employee, TimeOffRequest, Event } = require('../models'); // Import the Event model
-const jwt = require('jsonwebtoken');
+const { signToken, AuthenticationError } = require("../utils/auth");
+const { User, Employee, TimeOffRequest } = require("../models");
 
 const resolvers = {
   Query: {
     // Return the current logged-in employee's info
     me: async (_, __, context) => {
-      if (context.employee) {
-        return await Employee.findById(context.employee._id);
+      if (context.user) {
+        return await User.findById(context.user._id);
       }
-      throw new AuthenticationError('Not logged in');
+      throw AuthenticationError;
     },
 
     // Get all employees, optionally filter by name or ID
-    employees: async (_, { searchTerm, searchBy }) => {
-      let query = {};
-      if (searchTerm && searchBy) {
-        if (searchBy === 'name') {
-          query = {
-            $or: [
-              { firstName: { $regex: searchTerm, $options: 'i' } },
-              { lastName: { $regex: searchTerm, $options: 'i' } },
-            ],
-          };
-        } else if (searchBy === 'id') {
-          query = { _id: searchTerm };
-        }
+    employees: async (_, __, context) => {
+      if (context.user) {
+        return await Employee.find();
       }
-      return await Employee.find(query).sort({ lastName: 1, firstName: 1 });
+      throw AuthenticationError;
     },
 
     // Get a single employee by ID
-    employee: async (_, { id }) => {
-      return await Employee.findById(id);
+    employee: async (_, { userId }) => {
+      if (context.user) {
+        return await Employee.findOne({user:{userId}}).populate("TimeOffRequest");
+      }
+      throw AuthenticationError;
     },
 
     // Get all time off requests
-    timeOffRequests: async () => {
-      return await TimeOffRequest.find().populate('employee');
-    },
-
-    // Get all events
-    events: async () => {
-      return await Event.find().sort({ date: 1 });
-    },
-
-    // Get a single event by ID
-    event: async (_, { id }) => {
-      return await Event.findById(id);
+    timeOffRequests: async (_, __, context) => {
+      if (context.user) {
+        return await TimeOffRequest.find();
+      }
+      throw AuthenticationError;
     },
   },
 
   Mutation: {
     // Login mutation for employee authentication
-    login: async (_, { email, password }) => {
+    login: async (_, { username, password }) => {
+      const user = await User.findOne({ username });
+      if (!user) {
+        throw AuthenticationError;
+      }
+      const correctPw = await user.isCorrectPassword(password);
+      if (!correctPw) {
+        throw AuthenticationError;
+      }
+      const token = signToken(user);
+      return { token, user };
+    },
+
+    // Signup mutation
+    signup: async (_, { username, password, email}) => {
       const employee = await Employee.findOne({ email });
       if (!employee) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw AuthenticationError;
       }
-      const correctPw = await employee.isCorrectPassword(password);
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-      const token = jwt.sign(
-        { _id: employee._id, isAdmin: employee.isAdmin },
-        process.env.JWT_SECRET,
-        { expiresIn: '2h' }
-      );
-      return { token, employee };
+
+      const newUser = await User.create({
+        username,
+        password,
+      });
+      employee.user.set(newUser);
+      await employee.save();
+      const token = signToken(newUser);
+      return { token, newUser };
     },
 
     // Add a new employee
-    addEmployee: async (_, args) => {
-      const employee = await Employee.create(args);
-      return employee;
+    addEmployee: async (_, {employee}, context) => {
+      if (context.user) {
+        const newEmployee = await Employee.create(employee);
+        return newEmployee;
+      }
+      throw AuthenticationError;
     },
 
     // Update an employee's details
-    updateEmployee: async (_, { id, ...updates }) => {
-      return await Employee.findByIdAndUpdate(id, updates, { new: true });
+    updateEmployee: async (_, args) => {
+      if (context.user) {
+        return await Employee.findByIdAndUpdate(
+          { _id: empId },
+          {
+            firstName: args.firstName,
+            lastName: args.lastName,
+            ssn: args.ssn,
+            position: args.position,
+            pay: args.pay,
+          },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
     },
 
     // Terminate an employee (only accessible to admin)
-    terminateEmployee: async (_, { id, adminPassword }, context) => {
-      if (context.employee && context.employee.isAdmin) {
-        const isCorrect = adminPassword === process.env.ADMIN_PASSWORD;
-        if (isCorrect) {
-          await Employee.findByIdAndUpdate(id, { isActive: false });
-          return true;
-        }
+    terminateEmployee: async (_, { userId }, context) => {
+      if (context.user.isAdmin) {
+        const user = await User.findOneAndDelete({ _id: userId });
+        return await Employee.findOneAndDelete(user);
       }
-      throw new AuthenticationError('Unauthorized or incorrect password');
+      throw AuthenticationError;
     },
 
     // Create a time off request for an employee
-    createTimeOffRequest: async (_, { employeeId, startDate, endDate }) => {
-      return await TimeOffRequest.create({
-        employee: employeeId,
-        startDate,
-        endDate,
-        status: 'pending',
-      });
+    createTimeOffRequest: async (_, { empId, startDate, endDate }) => {
+      if (context.user) {
+        const request = await TimeOffRequest.create({
+          startDate,
+          endDate,
+        });
+         await Employee.findOneAndUpdate(
+          { _id: empId },
+          { $addToSet: { timeOffRequests: request } },
+          { new: true }
+        );
+        return request;
+      }
+      throw AuthenticationError;
     },
 
     // Update the status of a time off request (pending, approved, denied)
     updateTimeOffRequestStatus: async (_, { requestId, status }) => {
-      return await TimeOffRequest.findByIdAndUpdate(
-        requestId,
-        { status },
-        { new: true }
-      );
-    },
-
-    // Add a new event
-    addEvent: async (_, { input }, context) => {
-      if (context.employee && context.employee.isAdmin) {
-        const event = await Event.create(input);
-        return event;
+      if (context.user.isAdmin) {
+        return await TimeOffRequest.findByIdAndUpdate(
+          requestId,
+          { status },
+          { new: true }
+        );
       }
-      throw new AuthenticationError('Unauthorized');
-    },
-
-    // Update an existing event
-    updateEvent: async (_, { id, input }, context) => {
-      if (context.employee && context.employee.isAdmin) {
-        const updatedEvent = await Event.findByIdAndUpdate(id, input, {
-          new: true,
-        });
-        return updatedEvent;
-      }
-      throw new AuthenticationError('Unauthorized');
-    },
-
-    // Delete an event
-    deleteEvent: async (_, { id }, context) => {
-      if (context.employee && context.employee.isAdmin) {
-        const deletedEvent = await Event.findByIdAndDelete(id);
-        if (deletedEvent) {
-          return true;
-        }
-        return false;
-      }
-      throw new AuthenticationError('Unauthorized');
+      throw AuthenticationError;
     },
   },
 };

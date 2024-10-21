@@ -1,8 +1,25 @@
 // Added Events and refactored RB 101824
 const { signToken, AuthenticationError } = require("../utils/auth");
 const { User, Employee, TimeOffRequest } = require("../models");
+const { GraphQLScalarType } = require("graphql");
+const { Kind } = require("graphql/language");
 
 const resolvers = {
+  Date: new GraphQLScalarType({
+    name: 'Date',
+    parseValue(value) {
+      return new Date(value);
+    },
+    serialize(value) {
+      return value.toISOString();
+    },
+    parseLiteral(ast) {
+      if (ast.kind === Kind.INT) {
+        return parseInt(ast.value, 10);
+      }
+      return null;
+    },
+  }),
   Query: {
     // Return the current logged-in employee's info
     me: async (_, __, context) => {

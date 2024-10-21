@@ -2,6 +2,9 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = `
+
+  scalar Date
+
   type User {
     _id: ID!
     username: String!
@@ -19,7 +22,7 @@ const typeDefs = `
     ssn: String!
     position: String!
     pay: Float!
-    startDate: String!
+    startDate: Date!
     isActive: Boolean!
   }
 
@@ -32,14 +35,14 @@ const typeDefs = `
       ssn: String!
       position: String!
       pay: Float!
-      startDate: String!
+      startDate: Date!
   }
 
-      type TimeOffRequest {
+    type TimeOffRequest {
     _id: ID!
     employee: Employee!
-    startDate: String!
-    endDate: String!
+    startDate: Date!
+    endDate: Date!
     status: String!
   }
 
@@ -70,8 +73,8 @@ const typeDefs = `
     terminateEmployee(userId: ID!): Employee
     createTimeOffRequest(
       empId: ID!
-      startDate: String!
-      endDate: String!
+      startDate: Date!
+      endDate: Date!
     ): TimeOffRequest
     updateTimeOffRequestStatus(requestId: ID!, status: String!): TimeOffRequest
   }

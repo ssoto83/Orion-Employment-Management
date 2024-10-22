@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Box } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -15,7 +14,6 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
 
   return (
     <Box>
-      <h1>NavBar</h1>
       <nav
         style={{
           display: 'flex',

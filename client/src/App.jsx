@@ -1,4 +1,5 @@
 import './App.css';
+import { Box } from '@mui/material';
 import {
   ApolloClient,
   InMemoryCache,
@@ -34,54 +35,25 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
+const App = () => {
   return (
     <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
+      <Box
+        sx={{
+          backgroundImage: 'url("./project3_bg.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <Header />
-        <div className="container">
-          <Outlet />
-        </div>
-      </div>
+        <Outlet />
+      </Box>
     </ApolloProvider>
   );
-}
+};
 
 export default App;
-
-
-
-
-
-
-
-
-// import React, { useState, useEffect } from 'react';
-// import { Outlet } from 'react-router-dom';
-// import { } from './pages;
-// import Dashboard from './pages/Dashboard';
-// import LoginPage from './pages/LoginPage';
-// import Header from './components/Header'; // Import Header
-
-// function App() {
-//   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-//   useEffect(() => {
-//     const token = localStorage.getItem('token');
-//     setIsLoggedIn(!!token);
-//   }, []);
-
-//   const handleLogout = () => {
-//     localStorage.removeItem('token');
-//     setIsLoggedIn(false);
-//   };
-
-//   return (
-//     <>
-//       <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-//       <Outlet /> {/* This will render the children routes */}
-//     </>
-//   );
-// }
-
-// export default App;

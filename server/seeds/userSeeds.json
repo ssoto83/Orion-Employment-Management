@@ -1,35 +1,7 @@
 [
-    {
-      "username": "johndoe",
-      "password": "password123",
-      "isAdmin": true
-    },
-    {
-      "username": "janesmith",
-      "password": "password123",
-      "isAdmin": false
-    },
-  
-    {
-      "username": "emilyjohnson",
-      "password": "password123",
-      "isAdmin": true
-    },
-    {
-      "username": "kimiko",
-      "password": "password123",
-      "isAdmin": true
-    },
-    {
-      "username": "zain",
-      "password": "password123",
-      "isAdmin": true
-    },
-  
-    {
-      "username": "johndoe",
-      "password": "password123",
-      "isAdmin": true
-    }
-  ]
-  
+  {
+    "username": "John",
+    "password": "123456",
+    "isAdmin": true
+  }
+]

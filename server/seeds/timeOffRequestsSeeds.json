@@ -1,18 +1,18 @@
 [
   {
-    "employeeId": "employeeId1", // replace with actual employee ID
+    "employeeId": "employeeId1", 
     "startDate": "2024-05-01T00:00:00Z",
     "endDate": "2024-05-05T00:00:00Z",
     "status": "approved"
   },
   {
-    "employeeId": "employeeId2", // replace with actual employee ID
+    "employeeId": "employeeId2", 
     "startDate": "2024-06-01T00:00:00Z",
     "endDate": "2024-06-03T00:00:00Z",
     "status": "pending"
   },
   {
-    "employeeId": "employeeId3", // replace with actual employee ID
+    "employeeId": "employeeId3", 
     "startDate": "2024-07-10T00:00:00Z",
     "endDate": "2024-07-15T00:00:00Z",
     "status": "denied"

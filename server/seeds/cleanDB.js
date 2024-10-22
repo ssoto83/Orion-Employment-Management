@@ -1,16 +1,22 @@
-const models = require('../models');
-const db = require('../config/connection');
-
-module.exports = async (modelName, collectionName) => {
+const cleanDB = async (db) => {
   try {
-    let modelExists = await models[modelName].db.db.listCollections({
-      name: collectionName
-    }).toArray()
-
-    if (modelExists.length) {
-      await db.dropCollection(collectionName);
+    if (!db) {
+      throw new Error("Database connection not provided");
     }
-  } catch (err) {
-    throw err;
+    console.log("Cleaning database...", db);
+
+    const collections = await db.collections;
+    // Drop each collection
+    for (const key in collections) {
+      const collection = collections[key];
+      await collection.deleteMany({});
+      console.log(`Cleared collection: ${collection.collectionName}`);
+    }
+
+    console.log("Database cleaned successfully");
+  } catch (error) {
+    console.error("Error cleaning database:", error);
+    throw error;
   }
-}
+};
+module.exports = cleanDB;

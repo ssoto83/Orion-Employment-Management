@@ -1,50 +1,35 @@
 [
     {
-      username: 'johndoe',
-      password: 'password123',
-      isAdmin: true,
+      "username": "johndoe",
+      "password": "password123",
+      "isAdmin": true
     },
     {
-      username: 'janesmith',
-      password: 'password123',
-      isAdmin: false,
+      "username": "janesmith",
+      "password": "password123",
+      "isAdmin": false
     },
   
     {
-      username: 'emilyjohnson',
-      password: 'password123',
-      isAdmin: true,
+      "username": "emilyjohnson",
+      "password": "password123",
+      "isAdmin": true
     },
     {
-      username: 'kimiko',
-      password: 'password123',
-      isAdmin: true,
+      "username": "kimiko",
+      "password": "password123",
+      "isAdmin": true
     },
     {
-      username: 'zain',
-      password: 'password123',
-      isAdmin: true,
+      "username": "zain",
+      "password": "password123",
+      "isAdmin": true
     },
   
     {
-      username: 'johndoe',
-      password: 'password123',
-      isAdmin: true,
-    },
-    {
-      username: 'susana',
-      password: 'password123',
-      isAdmin: true,
-    },
-    {
-      username: 'johndoe',
-      password: 'password123',
-      isAdmin: true,
-    },
-    {
-      username: 'rachel',
-      password: 'password123',
-      isAdmin: true,
-    },
-  ];
+      "username": "johndoe",
+      "password": "password123",
+      "isAdmin": true
+    }
+  ]
   

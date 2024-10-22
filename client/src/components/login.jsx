@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, Link } from '@mui/material';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
   const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [login, { error, data }] = useMutation(LOGIN);
   const navigate = useNavigate();
 
   // update state based on form input changes

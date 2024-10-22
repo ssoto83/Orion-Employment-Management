@@ -5,9 +5,9 @@
   text-align: center;
 }
 
-.home {
+.homepage {
   height: 100vh;
-  background-image: url('project3_bg.png');
+  backgroundd-image: url('../assets/project3_bg.png');
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -30,4 +30,10 @@
 
 .menu {
   margin-right: 40px;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

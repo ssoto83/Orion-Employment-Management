@@ -7,22 +7,18 @@ import Home from '../pages/Home';
 const Header = () => {
   return (
     <Box>
-      <h1>Header</h1>
       <header
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '10px 20px',
-          backgroundColor: '#fff',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          padding: '0px 0px',
         }}
       >
         {/* Direct reference to logo in the public folder */}
         <img
-          src='/assets/orion_logo.png'
+          src='./orion_logo.png'
           alt='Orion Employee Management Logo'
-          onClick={() => Home}
+          onClick={() => '/Home'}
           style={{ width: '435px', height: '125px' }}
         />
         <Navbar/>

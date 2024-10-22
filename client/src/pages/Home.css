@@ -7,7 +7,7 @@
 
 .home {
   height: 100vh;
-  background-image: url('project3_bg.png');
+  background-image: url('/project3_bg.png');
   background-size: cover;
   display: flex;
   flex-direction: column;

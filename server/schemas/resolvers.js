@@ -23,33 +23,33 @@ const resolvers = {
   Query: {
     // Return the current logged-in employee's info
     me: async (_, __, context) => {
-      if (context.user) {
+      /* if (context.user) { */
         return await User.findById(context.user._id);
-      }
+      // }
       throw AuthenticationError;
     },
 
     // Get all employees, optionally filter by name or ID
     employees: async (_, __, context) => {
-      if (context.user) {
+      // if (context.user) {
         return await Employee.find();
-      }
+      // }
       throw AuthenticationError;
     },
 
     // Get a single employee by ID
     employee: async (_, { userId }) => {
-      if (context.user) {
+      // if (context.user) {
         return await Employee.findOne({user:{userId}}).populate("TimeOffRequest");
-      }
+      // }
       throw AuthenticationError;
     },
 
     // Get all time off requests
     timeOffRequests: async (_, __, context) => {
-      if (context.user) {
+      // if (context.user) {
         return await TimeOffRequest.find();
-      }
+      // }
       throw AuthenticationError;
     },
   },
@@ -80,24 +80,30 @@ const resolvers = {
         username,
         password,
       });
-      employee.user.set(newUser);
-      await employee.save();
+
+      await Employee.findOneAndUpdate(
+        {_id:employee._id},
+        {$set:{user:newUser}},
+        {new:true}
+      )
+      /* employee.user.set(newUser);
+      await employee.save(); */
       const token = signToken(newUser);
       return { token, newUser };
     },
 
     // Add a new employee
     addEmployee: async (_, {employee}, context) => {
-      if (context.user) {
+      // if (context.user) {
         const newEmployee = await Employee.create(employee);
         return newEmployee;
-      }
+      // }
       throw AuthenticationError;
     },
 
     // Update an employee's details
     updateEmployee: async (_, args) => {
-      if (context.user) {
+      // if (context.user) {
         return await Employee.findByIdAndUpdate(
           { _id: empId },
           {
@@ -109,22 +115,22 @@ const resolvers = {
           },
           { new: true }
         );
-      }
+      // }
       throw AuthenticationError;
     },
 
     // Terminate an employee (only accessible to admin)
     terminateEmployee: async (_, { userId }, context) => {
-      if (context.user.isAdmin) {
+      // if (context.user.isAdmin) {
         const user = await User.findOneAndDelete({ _id: userId });
         return await Employee.findOneAndDelete(user);
-      }
+      // }
       throw AuthenticationError;
     },
 
     // Create a time off request for an employee
     createTimeOffRequest: async (_, { empId, startDate, endDate }) => {
-      if (context.user) {
+      // if (context.user) {
         const request = await TimeOffRequest.create({
           startDate,
           endDate,
@@ -135,19 +141,19 @@ const resolvers = {
           { new: true }
         );
         return request;
-      }
+      // }
       throw AuthenticationError;
     },
 
     // Update the status of a time off request (pending, approved, denied)
     updateTimeOffRequestStatus: async (_, { requestId, status }) => {
-      if (context.user.isAdmin) {
+      // if (context.user.isAdmin) {
         return await TimeOffRequest.findByIdAndUpdate(
           requestId,
           { status },
           { new: true }
         );
-      }
+      // }
       throw AuthenticationError;
     },
   },

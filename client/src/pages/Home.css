@@ -5,9 +5,9 @@
   text-align: center;
 }
 
-.homepage {
+.home {
   height: 100vh;
-  backgroundd-image: url('../assets/project3_bg.png');
+  background-image: url('/project3_bg.png');
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -32,8 +32,4 @@
   margin-right: 40px;
 }
 
-.form-input {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+

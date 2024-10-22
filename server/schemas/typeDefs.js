@@ -1,8 +1,10 @@
-// schemas/typeDefs.js
+// Import the gql tagged template function.  Added by RB on 101824
+const { gql } = require('apollo-server-express');
 
-const { gql } = require("apollo-server-express");
+const typeDefs = `
 
-const typeDefs = gql`
+  scalar Date
+
   type User {
     _id: ID!
     username: String!
@@ -20,15 +22,27 @@ const typeDefs = gql`
     ssn: String!
     position: String!
     pay: Float!
-    startDate: String!
+    startDate: Date!
     isActive: Boolean!
   }
 
-  type TimeOffRequest {
+   input EmployeeInfo {
+     firstName: String!
+      lastName: String!
+      address: String!
+      phoneNumber: String!
+      email: String!
+      ssn: String!
+      position: String!
+      pay: Float!
+      startDate: Date!
+  }
+
+    type TimeOffRequest {
     _id: ID!
     employee: Employee!
-    startDate: String!
-    endDate: String!
+    startDate: Date!
+    endDate: Date!
     status: String!
   }
 
@@ -39,37 +53,28 @@ const typeDefs = gql`
 
   type Query {
     me: User
-    employees(searchTerm: String, searchBy: String): [Employee]
-    employee(id: ID!): Employee
+    employees: [Employee]
+    employee(userId: ID!): Employee
     timeOffRequests: [TimeOffRequest]
   }
 
   type Mutation {
-    login(email: String!, password: String!): Auth
-    addEmployee(
-      firstName: String!
-      lastName: String!
-      address: String!
-      phoneNumber: String!
-      email: String!
-      ssn: String!
-      position: String!
-      pay: Float!
-      startDate: String!
-    ): Employee
+    login(username: String!, password: String!): Auth
+    signup(email: String!, username: String!, password: String!): Auth
+    addEmployee(employee: EmployeeInfo!): Employee
     updateEmployee(
-      id: ID!
+      empId: ID!
       firstName: String
       lastName: String
       ssn: String
       position: String
       pay: Float
     ): Employee
-    terminateEmployee(id: ID!, adminPassword: String!): Boolean
+    terminateEmployee(userId: ID!): Employee
     createTimeOffRequest(
-      employeeId: ID!
-      startDate: String!
-      endDate: String!
+      empId: ID!
+      startDate: Date!
+      endDate: Date!
     ): TimeOffRequest
     updateTimeOffRequestStatus(requestId: ID!, status: String!): TimeOffRequest
   }

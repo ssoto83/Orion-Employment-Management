@@ -1,4 +1,5 @@
-import {useMutation,useQuery} from 'react-router-dom'
+import {useQuery} from '@apollo/client'
+import {useMutation} from '@apollo/client';
 import {CREATE_TIMEOFFREQUEST} from '../utils/mutations'
 import {GET_ME} from '../utils/queries'
 
@@ -35,4 +36,4 @@ const TimeOffRequest = () => {
     )
 }
 
-export default TimeOffRequest
+export default TimeOffRequest;

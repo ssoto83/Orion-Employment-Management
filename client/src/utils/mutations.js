@@ -1,62 +1,75 @@
 import { gql } from "@apollo/client";
 
-// Add a new user (for signup)
 export const ADD_USER = gql`
-  mutation AddUser($input: AddUserInput!) {
-    addUser(input: $input) {
+mutation AddUser(
+  $username: String!
+  $email: String!
+  $password: String!
+) {
+  addUser(
+    username: $username
+    email: $email
+    password: $password
+  ) {
+    token
+    user {
       id
-      firstName
-      lastName
+      username
       email
-      token
     }
   }
-`;
+})`;
 
 // Add a new employee
 export const ADD_EMPLOYEE = gql`
-  mutation AddEmployee($input: AddEmployeeInput!) {
-    addEmployee(input: $input) {
-      id
-      firstName
-      lastName
+  mutation AddEmployee($employee: EmployeeInfo!) {
+    addEmployee(employee: $employee) {
+      _id
+      address
       email
+      firstName
+      isActive
+      lastName
+      pay
+      phoneNumber
       position
+      ssn
       startDate
     }
   }
 `;
-
 // Update employee details
 export const UPDATE_EMPLOYEE = gql`
-  mutation UpdateEmployee($id: ID!, $input: UpdateEmployeeInput!) {
-    updateEmployee(id: $id, input: $input) {
+  mutation UpdateEmployee(
+    $empId: ID!
+    $firstName: String
+    $lastName: String
+    $ssn: String
+    $position: String
+    $pay: Float
+  ) {
+    updateEmployee(
+      empId: $empId
+      firstName: $firstName
+      lastName: $lastName
+      ssn: $ssn
+      position: $position
+      pay: $pay
+    ) {
       id
       firstName
       lastName
-      email
+      ssn
       position
-      startDate
-    }
-  }
-`;
-
-// Add a new event
-export const ADD_EVENT = gql`
-  mutation AddEvent($input: AddEventInput!) {
-    addEvent(input: $input) {
-      id
-      name
-      date
-      photo
+      pay
     }
   }
 `;
 
 // Login user
-export const LOGIN_USER = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
+export const LOGIN = gql`
+  mutation Login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
       token
       user {
         id
@@ -69,20 +82,42 @@ export const LOGIN_USER = gql`
 
 // Define the SIGNUP mutation
 export const SIGNUP = gql`
-  mutation Signup($input: SignupInput!) {
-    signup(input: $input) {
-      id
-      username
-      email
+  mutation Signup($email: String!, $username: String!, $password: String!) {
+    signup(email: $email, username: $username, password: $password) {
       token
+      user {
+        id
+        username
+        email
+      }
     }
   }
 `;
 
+//Create TimeOffRequest
 export const CREATE_TIMEOFFREQUEST = gql`
-  mutation createTimeOffRequest($input: TimeOffRequestInput!) {
-    createTimeOffRequest(input: $input) {
+  mutation CreateTimeOffRequest(
+    $empId: ID!
+    $startDate: Date!
+    $endDate: Date!
+  ) {
+    createTimeOffRequest(
+      empId: $empId
+      startDate: $startDate
+      endDate: $endDate
+    ) {
       id
+      startDate
+      endDate
+      status
+    }
+  }
+`;
+export const UPDATE_TIMEOFFREQUEST_STATUS = gql`
+  mutation UpdateTimeOffRequestStatus($requestId: ID!, $status: String!) {
+    updateTimeOffRequestStatus(requestId: $requestId, status: $status) {
+      id
+      status
     }
   }
 `;

@@ -1,5 +1,5 @@
 // Import the gql tagged template function.  Added by RB on 101824
-const { gql } = require('apollo-server-express');
+/* const { gql } = require('apollo-server-express'); */
 
 const typeDefs = `
 
@@ -8,8 +8,8 @@ const typeDefs = `
   type User {
     _id: ID!
     username: String!
+    isAdmin: Boolean!
     email: String!
-    role: String!
   }
 
   type Employee {
@@ -24,6 +24,7 @@ const typeDefs = `
     pay: Float!
     startDate: Date!
     isActive: Boolean!
+    timeOffRequests:[TimeOffRequest]
   }
 
    input EmployeeInfo {
@@ -54,8 +55,7 @@ const typeDefs = `
   type Query {
     me: User
     employees: [Employee]
-    employee(userId: ID!): Employee
-    timeOffRequests: [TimeOffRequest]
+    employee: Employee
   }
 
   type Mutation {
@@ -75,8 +75,8 @@ const typeDefs = `
       empId: ID!
       startDate: Date!
       endDate: Date!
-    ): TimeOffRequest
-    updateTimeOffRequestStatus(requestId: ID!, status: String!): TimeOffRequest
+    ): Employee
+    updateTimeOffRequestStatus(empId:ID!,requestId: ID!, status: String!): Employee
   }
 `;
 

@@ -16,5 +16,5 @@ const timeOffRequestSchema = new mongoose.Schema({
     default: "pending",
   },
 });
-const TimeOffRequest = mongoose.model("timeOffRequest", timeOffRequestSchema);
-module.exports = TimeOffRequest;
+/* const TimeOffRequest = mongoose.model("timeOffRequest", timeOffRequestSchema); */
+module.exports = timeOffRequestSchema;

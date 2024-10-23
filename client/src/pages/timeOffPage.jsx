@@ -27,7 +27,7 @@ const TimeOffPage = () => {
     try {
       const { data } = await userRequests({ variables: { employeeId } });
       return (
-        <div id="all-requests">
+        <Box id="all-requests">
           <table id="requests-table-admin">
             <thead>
               <tr>
@@ -48,7 +48,7 @@ const TimeOffPage = () => {
               })}
             </tbody>
           </table>
-        </div>
+        </Box>
       );
     } catch (err) {
       console.log(err);
@@ -59,7 +59,7 @@ const TimeOffPage = () => {
     try {
       const { data } = await allRequests();
       return (
-        <div id="all-requests">
+        <Box id="all-requests">
           <table id="requests-table-admin">
             <thead>
               <tr>

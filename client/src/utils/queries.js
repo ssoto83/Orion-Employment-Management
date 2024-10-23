@@ -1,72 +1,86 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 // Get all employees
 export const GET_EMPLOYEES = gql`
   query Employees {
-    employees {
+  employees {
+    _id
+    firstName
+    lastName
+    address
+    phoneNumber
+    email
+    ssn
+    position
+    pay
+    startDate
+    isActive
+    timeOffRequests {
       _id
-      firstName
-      lastName
-      address
-      phoneNumber
-      email
-      ssn
-      position
-      pay
       startDate
-      isActive
+      endDate
+      status
     }
   }
+}
 `;
 
 // Get a specific employee by ID
 export const GET_EMPLOYEE_BY_ID = gql`
-  query Employee($userId: ID!) {
-    employee(userId: $userId) {
+  query Employee {
+  employee {
+    _id
+    firstName
+    lastName
+    address
+    phoneNumber
+    email
+    ssn
+    position
+    pay
+    startDate
+    isActive
+    timeOffRequests {
       _id
-      address
-      email
-      firstName
-      isActive
-      lastName
-      pay
-      phoneNumber
-      position
-      ssn
       startDate
+      endDate
+      status
     }
   }
+}
 `;
 
+
 export const GET_ME = gql`
-  query getMe {
-    me {
-      id
-      username
-      email
-    }
+  query Me {
+  me {
+    _id
+    username
+    isAdmin
   }
+}
 `;
 
 export const GET_ALLREQUESTS = gql`
-  query TimeOffRequests {
+  query AllTimeOffRequests {
+  employees {
+    _id
+    firstName
+    lastName
     timeOffRequests {
-      id
+      _id
       startDate
       endDate
       status
-      employee {
-        _id
-        firstName
-        lastName
-      }
     }
   }
+}
 `;
 
-export const GET_USERREQUESTS = gql`
-  query UserTimeOffRequests($empId: ID!) {
-    userTimeOffRequests(empId: $empId) {
+//use get employee
+/* export const GET_USERREQUESTS = gql`
+  query GetUserRequests($employeeId: ID!) {
+    userRequests(employeeId: $employeeId) {
       id
       startDate
       endDate
@@ -74,3 +88,4 @@ export const GET_USERREQUESTS = gql`
     }
   }
 `;
+ */

@@ -1,57 +1,29 @@
-import { Button, Box } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
-const Navbar = ({ isLoggedIn, onLogout }) => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    // Clear the user's session (e.g., remove token)
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    onLogout(); // Call the logout function passed as a prop
-    navigate('/'); // Redirect to home page after logout
-  };
-
+const Navbar = () => {
   return (
-    <Box>
-      <nav
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          alignItems: 'center',
-        }}
-      >
-        <Link
-          to='/employee-dashboard'
-          style={{ color: '#f57369', margin: '0 15px' }}
-        >
-          Employee Dashboard
-        </Link>
-        <Link
-          to='/employee-events'
-          style={{ color: '#f57369', margin: '0 15px' }}
-        >
-          Employee Events
-        </Link>
-        {!isLoggedIn ? (
-          <Link to='/login' style={{ color: '#f57369', margin: '0 15px' }}>
-            Log In
-          </Link>
-        ) : (
-          <button
-            onClick={handleLogout}
-            style={{
-              color: '#f57369',
-              border: 'none',
-              background: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            Log Out
-          </button>
-        )}
-      </nav>
-    </Box>
+    <AppBar position="static" sx={{ backgroundColor: '#1976d2' }}>
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
+        {/* Logo section */}
+        <Box display="flex" alignItems="center">
+          {/* Direct reference to the logo */}
+          <img
+            src='./orion_logo.png'
+            alt='Orion Employee Management Logo'
+            onClick={() => window.location.href = '/Home'}
+            style={{ width: '150px', height: 'auto', cursor: 'pointer' }}
+          />
+        </Box>
+
+        {/* Menu or login section */}
+        <Box>
+          <Button color="inherit">Login</Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 

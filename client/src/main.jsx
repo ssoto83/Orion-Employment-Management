@@ -5,9 +5,6 @@ import App from './App.jsx';
 import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage'; // Correct the path and filename case
-import EmployeesPage from './pages/EmployeesPage.jsx'; // Ensure the path and filename case are correct
-// import TimeOffPage from './pages/TimeOffPage.jsx'; // Ensure the path and filename case are correct
-import Signup from './pages/SignUp.jsx'; // Correct the path and the component name
 import Dashboard from './pages/Dashboard.jsx';
 
 const router = createBrowserRouter([
@@ -27,18 +24,6 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <LoginPage />,
-      },
-      {
-        path: '/employee',
-        element: <EmployeesPage />,
-      },
-      // {
-      //   path: '/timeoff',
-      //   element: <TimeOffPage />,
-      // },
-      {
-        path: '/signup',
-        element: <Signup />, // Fixed the capitalization of Signup
       },
 
     ],

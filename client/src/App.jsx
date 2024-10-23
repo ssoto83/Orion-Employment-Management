@@ -1,5 +1,4 @@
 import './App.css';
-import { Box } from '@mui/material';
 import {
   ApolloClient,
   InMemoryCache,
@@ -38,20 +37,8 @@ const client = new ApolloClient({
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      <Box
-        sx={{
-          backgroundImage: 'url("./project3_bg.png")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          minHeight: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Header />
-        <Outlet />
-      </Box>
+      <Header />
+      <Outlet />
     </ApolloProvider>
   );
 };

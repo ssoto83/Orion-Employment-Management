@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, Link } from '@mui/material';
 import { useMutation } from '@apollo/client';
-import { LOGIN } from '../utils/mutations';
+import { LOGIN } from '../graphql/mutations';
 import Auth from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';

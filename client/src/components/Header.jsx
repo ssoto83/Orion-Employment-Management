@@ -1,29 +1,30 @@
-import React from 'react'; // Import react
-import Navbar from './Navbar';
-import { Box } from '@mui/material'; // Import Box from Material-UI
-import Home from '../pages/Home';
+import React from 'react';
+import Navbar from './Navbar'; // Navbar with logo inside
+import { Box, Container, Typography } from '@mui/material';
 
-// The Header component takes isLoggedIn and onLogout props
 const Header = () => {
   return (
     <Box>
-      <header
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          padding: '0px 0px',
+      {/* Navbar component now contains the logo */}
+      <Navbar />
+
+      {/* Any other content that follows the navbar, like a header section */}
+      <Box
+        sx={{
+          backgroundColor: '#f5f5f5',
+          py: 8,
+          textAlign: 'center',
         }}
       >
-        {/* Direct reference to logo in the public folder */}
-        <img
-          src='./orion_logo.png'
-          alt='Orion Employee Management Logo'
-          onClick={() => '/Home'}
-          style={{ width: '435px', height: '125px' }}
-        />
-        <Navbar/>
-        {/* Navbar component */}
-      </header>
+        <Container maxWidth="md">
+          <Typography variant="h2" component="h1" gutterBottom>
+            Welcome to Orion Employee Management
+          </Typography>
+          <Typography variant="h5" component="p">
+            Manage your employees efficiently with our platform.
+          </Typography>
+        </Container>
+      </Box>
     </Box>
   );
 };

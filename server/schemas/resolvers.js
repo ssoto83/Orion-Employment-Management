@@ -6,7 +6,7 @@ const { Kind } = require("graphql/language");
 
 const resolvers = {
   Date: new GraphQLScalarType({
-    name: 'Date',
+    name: "Date",
     parseValue(value) {
       return new Date(value);
     },
@@ -38,9 +38,9 @@ const resolvers = {
     },
 
     // Get a single employee by ID
-    employee: async (_, args,context) => {
+    employee: async (_, args, context) => {
       if (context.user) {
-        return await Employee.findOne({user:context.user._id})
+        return await Employee.findOne({ user: context.user._id });
       }
       throw AuthenticationError;
     },
@@ -70,7 +70,7 @@ const resolvers = {
     },
 
     // Signup mutation
-    signup: async (_, { username, password, email}) => {
+    signup: async (_, { username, password, email }) => {
       const employee = await Employee.findOne({ email });
       if (!employee) {
         throw AuthenticationError;
@@ -79,29 +79,29 @@ const resolvers = {
       const user = await User.create({
         username,
         password,
-        email
+        email,
       });
 
       await Employee.findOneAndUpdate(
-        {_id:employee._id},
-        {$set:{user:user}},
-        {new:true}
-      )
+        { _id: employee._id },
+        { $set: { user: user } },
+        { new: true }
+      );
       const token = signToken(user);
       return { token, user };
     },
 
     // Add a new employee
-    addEmployee: async (_, {employee}, context) => {
-      /* if (context.user) { */
+    addEmployee: async (_, { employee }, context) => {
+      if (context.user) {
         const newEmployee = await Employee.create(employee);
         return newEmployee;
-      // }
+      }
       throw AuthenticationError;
     },
 
     // Update an employee's details
-    updateEmployee: async (_, args,context) => {
+    updateEmployee: async (_, args, context) => {
       if (context.user) {
         return await Employee.findByIdAndUpdate(
           { _id: args.empId },
@@ -120,7 +120,7 @@ const resolvers = {
 
     // Terminate an employee (only accessible to admin)
     terminateEmployee: async (_, { userId }, context) => {
-      if (context.user/* .isAdmin */) {
+      if (context.user /* .isAdmin */) {
         const user = await User.findOneAndDelete({ _id: userId });
         return await Employee.findOneAndDelete(user);
       }
@@ -128,7 +128,7 @@ const resolvers = {
     },
 
     // Create a time off request for an employee
-    createTimeOffRequest: async (_, { empId, startDate, endDate },context) => {
+    createTimeOffRequest: async (_, { empId, startDate, endDate }, context) => {
       if (context.user) {
         /* const request = await TimeOffRequest.create({
           startDate,
@@ -142,28 +142,31 @@ const resolvers = {
         return request; */
 
         return await Employee.findOneAndUpdate(
-          {_id:empId},
-          {$addToSet:{timeOffRequests:{startDate,endDate}}},
-          {new:true}
-        )
+          { _id: empId },
+          { $addToSet: { timeOffRequests: { startDate, endDate } } },
+          { new: true }
+        );
       }
       throw AuthenticationError;
     },
 
     // Update the status of a time off request (pending, approved, denied)
-    updateTimeOffRequestStatus: async (_, { empId,requestId, status },context) => {
-      if (context.user/* .isAdmin */) {
+    updateTimeOffRequestStatus: async (
+      _,
+      { empId, requestId, status },
+      context
+    ) => {
+      if (context.user /* .isAdmin */) {
         /* return await TimeOffRequest.findByIdAndUpdate(
           requestId,
           { status },
           { new: true }
         ); */
-        const employee = await Employee.findOne({_id:empId})
+        const employee = await Employee.findOne({ _id: empId });
         employee.timeOffRequests.id(requestId).status = status;
-        employee.markModified('timeOffRequests')
+        employee.markModified("timeOffRequests");
         employee.save();
         return employee;
-
       }
       throw AuthenticationError;
     },

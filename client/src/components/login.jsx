@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: '',username: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN);
   const navigate = useNavigate();
 
@@ -26,11 +26,17 @@ const Login = () => {
     event.preventDefault();
     try {
       const { data } = await login({
-        variables: { ...formState },
+        variables: { 
+          username: formState.username,
+          email: formState.email,
+          password: formState.password,
+
+         },
       });
 
       Auth.login(data.login.token);
       navigate('/dashboard'); // Redirect to dashboard after successful login
+      console.log('Logged in successfully');
     } catch (e) {
       console.error(e);
     }
@@ -48,6 +54,17 @@ const Login = () => {
         Employee Login
       </Typography>
       <form className='login-box' onSubmit={handleFormSubmit}>
+        <TextField
+          className='form-input'
+          label='Username'
+          name='username'
+          value={formState.username}
+          onChange={handleChange}
+          variant='outlined'
+          fullWidth
+          margin='normal'
+          required
+        />
         <TextField
           className='form-input'
           label='Email'

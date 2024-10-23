@@ -1,5 +1,5 @@
 const connectDb = require("../config/connection");
-const { User,Employee, TimeOffRequest } = require("../models");
+const { User,Employee } = require("../models");
 const userSeeds = require("./userSeeds.json");
 const employeeSeeds = require("./employeeSeeds.json");
 const timeOffRequestsSeeds = require("./timeOffRequestsSeeds.json");
@@ -13,7 +13,7 @@ connectDb.once("open", async () => {
 
     await Employee.create(employeeSeeds);
 
-    await TimeOffRequest.create(timeOffRequestsSeeds);
+    // await TimeOffRequest.create(timeOffRequestsSeeds);
     console.log("all done!");
   } catch (err) {
     console.error(err);

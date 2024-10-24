@@ -2,9 +2,9 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import App from './App.jsx';
-import ErrorPage from './pages/ErrorPage';
-import Home from './pages/Home';
-import LoginPage from './pages/LoginPage'; // Correct the path and filename case
+import ErrorPage from './pages/ErrorPage.jsx';
+import Home from './pages/Home.jsx';
+import LoginPage from './pages/LoginPage.jsx'; // Correct the path and filename case
 import Dashboard from './pages/Dashboard.jsx';
 
 const router = createBrowserRouter([

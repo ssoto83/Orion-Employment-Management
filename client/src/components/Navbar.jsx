@@ -1,7 +1,4 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Toolbar, Button, Box } from '@mui/material';
 
 const Navbar = () => {
   return (

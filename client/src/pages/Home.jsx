@@ -1,13 +1,13 @@
-import React from 'react';
-import '../index.css';
-import { Box } from '@mui/material';
-import Login from '../components/Login';
+// import '../index.css';
+import Navbar from '../components/Navbar';
+import Welcome from '../components/Welcome';
 
 const Home = () => {
   return (
-    <Box className='homepage'>
-      <Login />
-    </Box>
+    <div>
+     <div><Navbar /></div>
+     <div><Welcome /></div>
+    </div>
   );
 };
 

@@ -27,8 +27,8 @@ const typeDefs = `
     timeOffRequests:[TimeOffRequest]
   }
 
-   input EmployeeInfo {
-     firstName: String!
+  input EmployeeInfo {
+    firstName: String!
       lastName: String!
       address: String!
       phoneNumber: String!

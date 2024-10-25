@@ -4,7 +4,6 @@ import { useMutation } from '@apollo/client';
 import { LOGIN, SIGNUP } from '../graphql/mutations';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Add this import
-
 const LoginSignup = () => {
   const { login } = useAuth(); // Add this hook
   const [tabIndex, setTabIndex] = useState(0);
@@ -14,23 +13,19 @@ const LoginSignup = () => {
   const navigate = useNavigate();
   const [loginUser] = useMutation(LOGIN);
   const [signupUser] = useMutation(SIGNUP);
-
   // Handle tab change between login and signup
   const handleTabChange = (event, newIndex) => {
     setTabIndex(newIndex);
     setErrorMessage(''); // Reset error message on tab switch
   };
-
   // Handle input changes for login form
   const handleLoginChange = (e) => {
     setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
   };
-
   // Handle input changes for signup form
   const handleSignupChange = (e) => {
     setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
   };
-
   // Handle login submission
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -58,7 +53,6 @@ const LoginSignup = () => {
       setErrorMessage(error.message);
     }
   };
-
   // Handle signup submission
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
@@ -70,12 +64,9 @@ const LoginSignup = () => {
           password: signupForm.password,
         },
       });
-
       const { token, user } = data.signup;
-
       // Use the context's login function
       login(token, user.isa);
-
       if (user.isAdmin) {
         navigate('/admin');
       } else {
@@ -85,17 +76,14 @@ const LoginSignup = () => {
       setErrorMessage(error.message);
     }
   };
-
   return (
     <Box className="login-signup-container" sx={{ width: '100%', maxWidth: 500, mx: 'auto', mt: 4 }}>
       <Tabs value={tabIndex} onChange={handleTabChange} centered>
         <Tab label="Login" />
         <Tab label="Sign Up" />
       </Tabs>
-
       {/* Show error message */}
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-
       {/* Login Form */}
       {tabIndex === 0 && (
         <Box sx={{ mt: 2 }}>
@@ -135,7 +123,6 @@ const LoginSignup = () => {
           </form>
         </Box>
       )}
-
       {/* Signup Form */}
       {tabIndex === 1 && (
         <Box sx={{ mt: 2 }}>

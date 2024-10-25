@@ -1,0 +1,2 @@
+SECRET='05586c16-5c37-470b-8ad2-6be55512c3fe'
+MONGODB_URI='mongodb://localhost:27017/orionDB'

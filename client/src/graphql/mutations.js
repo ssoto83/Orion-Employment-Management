@@ -14,12 +14,14 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_EMPLOYEE = gql`
-  mutation AddEmployee($input: EmployeeInput!) {
-    addEmployee(input: $input) {
+  mutation addEmployee($employee: EmployeeInput!) {
+    addEmployee(employee: $employee) {
       _id
       firstName
       lastName
       email
+      ssn
+      address
       position
       pay
       startDate
@@ -29,23 +31,38 @@ export const ADD_EMPLOYEE = gql`
 `;
 
 export const UPDATE_EMPLOYEE = gql`
-  mutation UpdateEmployee($id: ID!, $input: EmployeeUpdateInput!) {
-    updateEmployee(id: $id, input: $input) {
-      _id
-      firstName
-      lastName
+  mutation updateEmployee(
+    $empId: ID!
+    $firstName: String
+    $lastName: String
+    $ssn: String
+    $position: String
+    $pay: Float
+  ) {
+    updateEmployee(
+      empId: $empId
+      firstName: $firstName
+      lastName: $lastName
+      ssn: $ssn
+      position: $position
+      pay: $pay
+    ) {
+      address
       email
-      position
-      pay
-      startDate
+      firstName
       isActive
+      lastName
+      pay
+      phoneNumber
+      position
+      ssn
     }
   }
 `;
 
 export const DELETE_EMPLOYEE = gql`
-  mutation DeleteEmployee($id: ID!) {
-    deleteEmployee(id: $id) {
+  mutation terminateEmployee($userId: ID!) {
+    terminateEmployee(userId: $userId) {
       _id
     }
   }

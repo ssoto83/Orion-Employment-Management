@@ -12,6 +12,15 @@ export const GET_EMPLOYEES = gql`
       pay
       startDate
       isActive
+      address
+      phoneNumber
+      ssn
+      timeOffRequests {
+        _id
+        startDate
+        endDate
+        status
+      }
     }
   }
 `;

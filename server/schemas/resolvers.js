@@ -143,9 +143,9 @@ const resolvers = {
             ssn: args.ssn,
             position: args.position,
             pay: args.pay,
-            startDate: args.startDate,
-            isActive: args.isActive,
             address: args.address,
+            phoneNumber: args.phoneNumber,
+            isActive: args.isActive,
           },
           { new: true }
         );

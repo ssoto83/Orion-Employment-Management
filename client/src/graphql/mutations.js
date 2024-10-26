@@ -1,18 +1,5 @@
 import { gql } from "@apollo/client";
 
-export const ADD_USER = gql`
-  mutation Signup($email: String!, $username: String!, $password: String!) {
-    signup(email: $email, username: $username, password: $password) {
-      token
-      user {
-        _id
-        username
-        isAdmin
-      }
-    }
-  }
-`;
-
 export const ADD_EMPLOYEE = gql`
   mutation addEmployee($employee: EmployeeInput!) {
     addEmployee(employee: $employee) {
@@ -31,31 +18,19 @@ export const ADD_EMPLOYEE = gql`
 `;
 
 export const UPDATE_EMPLOYEE = gql`
-  mutation updateEmployee(
-    $empId: ID!
-    $firstName: String
-    $lastName: String
-    $ssn: String
-    $position: String
-    $pay: Float
-  ) {
-    updateEmployee(
-      empId: $empId
-      firstName: $firstName
-      lastName: $lastName
-      ssn: $ssn
-      position: $position
-      pay: $pay
-    ) {
-      address
-      email
-      firstName
-      isActive
-      lastName
-      pay
-      phoneNumber
-      position
-      ssn
+ mutation UpdateEmployee($empId: ID!, $firstName: String, $lastName: String, $ssn: String, $position: String, $pay: Float, $phoneNumber: String, $address: String) {
+  updateEmployee(empId: $empId, firstName: $firstName, lastName: $lastName, ssn: $ssn, position: $position, pay: $pay,  phoneNumber: $phoneNumber, address: $address) {
+    _id
+    firstName
+    lastName
+    address
+    phoneNumber
+    email
+    ssn
+    position
+    pay
+    startDate
+    isActive
     }
   }
 `;
@@ -88,7 +63,7 @@ export const SIGNUP = gql`
     signup(email: $email, username: $username, password: $password) {
       token
       user {
-        id
+        _id
         username
         email
       }

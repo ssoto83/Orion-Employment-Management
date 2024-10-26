@@ -18,6 +18,7 @@
     "concurrently": "^8.2.0"
   },
   "dependencies": {
+    "@mui/x-data-grid": "^7.21.0",
     "dotenv": "^16.4.5"
   }
 }

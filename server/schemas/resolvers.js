@@ -134,7 +134,7 @@ const resolvers = {
 
     // Update an employee's details
     updateEmployee: async (_, args, context) => {
-      if (context.user) {
+      if (context.user || context.user.isAdmin) {
         return await Employee.findByIdAndUpdate(
           { _id: args.empId },
           {
@@ -144,7 +144,8 @@ const resolvers = {
             position: args.position,
             pay: args.pay,
             address: args.address,
-            phoneNumber: args.phoneNumber
+            phoneNumber: args.phoneNumber,
+            isActive: args.isActive,
           },
           { new: true }
         );
@@ -154,7 +155,7 @@ const resolvers = {
 
     // Terminate an employee (only accessible to admin)
     terminateEmployee: async (_, { userId }, context) => {
-      if (context.user /* .isAdmin */) {
+      if (context.user) {
         const user = await User.findOneAndDelete({ _id: userId });
         return await Employee.findOneAndDelete(user);
       }

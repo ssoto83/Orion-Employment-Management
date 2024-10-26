@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       { path: '/employee-dashboard', element: requireAuth('employee')({ element: <EmployeeDashboard /> }) },
       { path: '/employee/profile', element: requireAuth('employee')({ element: <EmployeeProfile /> }) },
       { path: '/employee/request-time-off', element: requireAuth('employee')({ element: <RequestTimeOff /> }) },
-      { path: '/employee/time-off-status', element: requireAuth('employee')({ element: <TimeOffStatus /> }) },
+      /* { path: '/employee/time-off-status', element: requireAuth('employee')({ element: <TimeOffStatus /> }) }, */
     ],
   },
 ]);

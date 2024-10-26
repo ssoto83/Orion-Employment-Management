@@ -69,6 +69,8 @@ const typeDefs = `
       ssn: String
       position: String
       pay: Float
+      address:String
+      phoneNumber:String 
     ): Employee
     terminateEmployee(userId: ID!): Employee
     createTimeOffRequest(

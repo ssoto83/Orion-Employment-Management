@@ -143,6 +143,8 @@ const resolvers = {
             ssn: args.ssn,
             position: args.position,
             pay: args.pay,
+            address: args.address,
+            phoneNumber: args.phoneNumber
           },
           { new: true }
         );

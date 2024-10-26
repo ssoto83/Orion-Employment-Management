@@ -1,17 +1,29 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Box, Tabs, Tab, Typography, TextField, Button, Alert } from '@mui/material';
 import { useMutation } from '@apollo/client';
 import { LOGIN, SIGNUP } from '../graphql/mutations';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Add this import
+import Auth from '../utils/auth'
 
 const LoginSignup = () => {
+  const navigate = useNavigate();
+ /*  useEffect(() => {
+    if (Auth.loggedIn()){
+      if (localStorage.getItem('role') === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/employee-dashboard');
+      }
+    }
+  },[]) */
+
   const { login } = useAuth(); // Add this hook
   const [tabIndex, setTabIndex] = useState(0);
   const [loginForm, setLoginForm] = useState({ username: '', email: '', password: '' });
   const [signupForm, setSignupForm] = useState({ email: '', username: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
+  
   const [loginUser] = useMutation(LOGIN);
   const [signupUser] = useMutation(SIGNUP);
 
@@ -74,7 +86,9 @@ const LoginSignup = () => {
       const { token, user } = data.signup;
 
       // Use the context's login function
-      login(token, user.isa);
+      /* login(token, user.isa); */
+      login(token, user.isAdmin);
+
 
       if (user.isAdmin) {
         navigate('/admin');

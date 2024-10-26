@@ -9,7 +9,6 @@ import AdminDashboard from './pages/AdminDashboard.jsx';
 import EmployeeDashboard from './pages/EmployeeDashboard.jsx';
 import ViewAllEmployees from './pages/ViewAllEmployees.jsx';
 import AddEmployee from './pages/AddEmployee.jsx';
-import UpdateEmployee from './pages/UpdateEmployee.jsx';
 import ApproveTimeOff from './pages/ApproveTimeOff.jsx';
 import EmployeeProfile from './pages/EmployeeProfile.jsx';
 import RequestTimeOff from './pages/RequestTimeOff.jsx';
@@ -50,7 +49,6 @@ const router = createBrowserRouter([
           { index: true, element: <AdminDashboard /> },
           { path: 'employees', element: <ViewAllEmployees /> },
           { path: 'add-employee', element: <AddEmployee /> },
-          { path: 'update-employee', element: <UpdateEmployee /> },
           { path: 'time-off-requests', element: <ApproveTimeOff /> },
         ],
       },

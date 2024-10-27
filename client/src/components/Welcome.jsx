@@ -48,7 +48,7 @@ const Welcome = () => {
 
                 {/* Additional details or calls to action */}
                 <Box>
-                    <Button variant="contained" color="primary" sx={{ mx: 1 }}>
+                    <Button variant="contained" color="primary" sx={{ mx: 1 }}  >
                         Get Started
                     </Button>
                     <Button variant="outlined" color="primary" sx={{ mx: 1 }}>

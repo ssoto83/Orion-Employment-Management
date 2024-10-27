@@ -7,7 +7,6 @@ const Home = () => {
   return (
     <div>
       <div><Welcome /></div>
-      <div><LoginSignup /></div>
       
     </div>
   );

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
+    "seed": "cd server && npm run seed",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
     "render-build": "npm install && npm run build"
@@ -15,5 +16,9 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "@mui/x-data-grid": "^7.21.0",
+    "dotenv": "^16.4.5"
   }
 }

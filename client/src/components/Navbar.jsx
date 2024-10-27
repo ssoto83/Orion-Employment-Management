@@ -1,57 +1,91 @@
-import { Button, Box } from '@mui/material';
+import { AppBar, Toolbar, Button, Box, IconButton, Menu, MenuItem } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { UserCircle } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
-const Navbar = ({ isLoggedIn, onLogout }) => {
+const Navbar = () => {
   const navigate = useNavigate();
+  const auth = useAuth();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  const handleLogout = () => {
-    // Clear the user's session (e.g., remove token)
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    onLogout(); // Call the logout function passed as a prop
-    navigate('/'); // Redirect to home page after logout
+  useEffect(() => {
+    if (auth !== null) {
+      setIsLoaded(true);
+    }
+  }, [auth]);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    auth.logout();
+    handleClose();
+    navigate('/login');
+  };
+
+  if (!isLoaded) {
+    return null; // or a loading indicator
+  }
+
   return (
-    <Box>
-      <nav
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          alignItems: 'center',
-        }}
-      >
-        <Link
-          to='/employee-dashboard'
-          style={{ color: '#f57369', margin: '0 15px' }}
-        >
-          Employee Dashboard
-        </Link>
-        <Link
-          to='/employee-events'
-          style={{ color: '#f57369', margin: '0 15px' }}
-        >
-          Employee Events
-        </Link>
-        {!isLoggedIn ? (
-          <Link to='/login' style={{ color: '#f57369', margin: '0 15px' }}>
-            Log In
-          </Link>
-        ) : (
-          <button
-            onClick={handleLogout}
-            style={{
-              color: '#f57369',
-              border: 'none',
-              background: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            Log Out
-          </button>
-        )}
-      </nav>
-    </Box>
+    <AppBar position="static" sx={{ backgroundColor: '#1976d2' }}>
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
+        <Box display="flex" alignItems="center">
+          <img
+            src='/orion_logo.png'
+            alt='Orion Employee Management Logo'
+            onClick={() => navigate('/')}
+            style={{ width: '150px', height: 'auto', cursor: 'pointer' }}
+          />
+        </Box>
+
+        <Box>
+          {!auth.isAuthenticated ? (
+            <Box>
+              <Button 
+                color="inherit" 
+                component={Link} 
+                to="/login"
+              >
+                Login/Signup
+              </Button>
+            </Box>
+          ) : (
+            <Box>
+              <Button 
+                color="inherit" 
+                component={Link} 
+                to={auth.userRole === 'admin' ? '/admin' : '/employee-dashboard'}
+                sx={{ mr: 2 }}
+              >
+                Dashboard
+              </Button>
+              <IconButton
+                size="large"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <UserCircle />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </Menu>
+            </Box>
+          )}
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 

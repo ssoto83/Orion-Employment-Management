@@ -1,15 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Sidebar from '../components/Sidebar'; // Sidebar component for menu
-import TimeOffRequest from '../components/TimeOffRequest';
-import Auth from '../utils/auth'
-import { useNavigate } from 'react-router-dom';
 
-const RequestTimeOff = () => {
-  const navigate = useNavigate();
-  useEffect(()=>{
-    Auth.loggedIn() ? null : navigate('/login')
-  },[])
-
+const EmployeeDashboard = () => {
   return (
     <div style={{ display: 'flex' }}>
       {/* Sidebar with Employee-specific menu items */}
@@ -21,11 +13,11 @@ const RequestTimeOff = () => {
         ]}
       />
       <div style={{ flexGrow: 1, padding: '20px' }}>
-      <h2>Request Time Off</h2>
-      <TimeOffRequest/>
+        <h1>Welcome to the Employee Dashboard</h1>
+        {/* Employee dashboard content can be rendered here */}
       </div>
     </div>
   );
 };
 
-export default RequestTimeOff;
+export default EmployeeDashboard;

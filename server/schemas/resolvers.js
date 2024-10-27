@@ -154,14 +154,16 @@ const resolvers = {
     },
 
     // Terminate an employee (only accessible to admin)
-    terminateEmployee: async (_, { userId }, context) => {
+    terminateEmployee: async (_, { empId }, context) => {
       if (context.user) {
-        const user = await User.findOneAndDelete({ _id: userId });
-        return await Employee.findOneAndDelete(user);
+        const employee = await Employee.findOneAndDelete({_id: empId});
+        if (employee.user?._id){
+          await User.findOneAndDelete({ _id: employee.user._id});
+        }
+        return employee
       }
       throw AuthenticationError;
     },
-
     // Create a time off request for an employee
     createTimeOffRequest: async (_, { empId, startDate, endDate }, context) => {
       if (context.user) {

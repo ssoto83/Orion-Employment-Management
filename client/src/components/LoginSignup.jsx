@@ -8,7 +8,7 @@ import Auth from '../utils/auth'
 
 const LoginSignup = () => {
   const navigate = useNavigate();
- /*  useEffect(() => {
+  useEffect(() => {
     if (Auth.loggedIn()){
       if (localStorage.getItem('role') === 'admin') {
         navigate('/admin');
@@ -16,7 +16,7 @@ const LoginSignup = () => {
         navigate('/employee-dashboard');
       }
     }
-  },[]) */
+  },[])
 
   const { login } = useAuth(); // Add this hook
   const [tabIndex, setTabIndex] = useState(0);

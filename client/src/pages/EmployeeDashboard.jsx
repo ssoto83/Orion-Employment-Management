@@ -9,7 +9,7 @@ const EmployeeDashboard = () => {
         menuItems={[
           { name: 'Employee Profile', link: '/employee/profile' },
           { name: 'Request Time Off', link: '/employee/request-time-off' },
-          { name: 'View Time Off Status', link: '/employee/time-off-status' },
+          /* { name: 'View Time Off Status', link: '/employee/time-off-status' }, */
         ]}
       />
       <div style={{ flexGrow: 1, padding: '20px' }}>

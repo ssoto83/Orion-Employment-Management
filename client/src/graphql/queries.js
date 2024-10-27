@@ -15,6 +15,9 @@ export const GET_EMPLOYEES = gql`
       address
       phoneNumber
       ssn
+      user {
+        _id
+      }
       timeOffRequests {
         _id
         startDate

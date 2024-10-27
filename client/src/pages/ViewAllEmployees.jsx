@@ -30,12 +30,15 @@ const ViewAllEmployees = () => {
     email: '',
     position: '',
     pay: '',
+    phoneNumber:'',
+    address:'',
+    ssn:'',
     startDate: new Date().toISOString().split('T')[0],
-    isActive: true,
     
   });
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
   const { loading, error, data, refetch } = useQuery(GET_EMPLOYEES);
+
   const [addEmployee] = useMutation(ADD_EMPLOYEE, {
     onCompleted: () => {
       setSnackbar({ open: true, message: 'Employee added successfully!', severity: 'success' });
@@ -73,7 +76,7 @@ const ViewAllEmployees = () => {
   const handleDeleteEmployee = async (employeeId) => {
     if (window.confirm('Are you sure you want to delete this employee?')) {
       try {
-        await deleteEmployee({ variables: { userId: employeeId } });
+        await deleteEmployee({ variables: { empId: employeeId } });
       } catch (error) {
         console.error('Error deleting employee:', error);
       }
@@ -336,6 +339,33 @@ const ViewAllEmployees = () => {
             type="number"
             value={newEmployeeData.pay}
             onChange={(e) => setNewEmployeeData({ ...newEmployeeData, pay: parseFloat(e.target.value) })}
+            fullWidth
+            required
+          />
+          <TextField
+            margin="dense"
+            name='phoneNumber'
+            label="Phone Number"
+            value={newEmployeeData.phoneNumber}
+            onChange={(e) => setNewEmployeeData({ ...newEmployeeData, [e.target.name]: e.target.value })}
+            fullWidth
+            required
+          />
+          <TextField
+            margin="dense"
+            name='address'
+            label="Address"
+            value={newEmployeeData.address}
+            onChange={(e) => setNewEmployeeData({ ...newEmployeeData, [e.target.name]: e.target.value })}
+            fullWidth
+            required
+          />
+          <TextField
+            margin="dense"
+            name='ssn'
+            label="SSN"
+            value={newEmployeeData.ssn}
+            onChange={(e) => setNewEmployeeData({ ...newEmployeeData, [e.target.name]: e.target.value })}
             fullWidth
             required
           />

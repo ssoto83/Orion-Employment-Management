@@ -24,6 +24,7 @@ const typeDefs = `
     pay: Float!
     startDate: Date!
     isActive: Boolean!
+    user:User
     timeOffRequests:[TimeOffRequest]
   }
 
@@ -72,7 +73,7 @@ const typeDefs = `
       address:String
       phoneNumber:String 
     ): Employee
-    terminateEmployee(userId: ID!): Employee
+    terminateEmployee(empId: ID!): Employee
     createTimeOffRequest(
       empId: ID!
       startDate: Date!

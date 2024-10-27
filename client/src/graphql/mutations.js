@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const ADD_EMPLOYEE = gql`
-  mutation addEmployee($employee: EmployeeInput!) {
+  mutation addEmployee($employee: EmployeeInfo!) {
     addEmployee(employee: $employee) {
       _id
       firstName
@@ -36,11 +36,11 @@ export const UPDATE_EMPLOYEE = gql`
 `;
 
 export const DELETE_EMPLOYEE = gql`
-  mutation terminateEmployee($userId: ID!) {
-    terminateEmployee(userId: $userId) {
-      _id
-    }
+  mutation TerminateEmployee($empId: ID!) {
+  terminateEmployee(empId: $empId) {
+    _id
   }
+}
 `;
 
 // Login user

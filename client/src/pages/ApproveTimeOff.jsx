@@ -14,29 +14,21 @@ const ApproveTimeOff = () => {
   });
   const handleStatusUpdate = async (empId, requestId, newStatus) => {
     try {
-      console.log('Updating request:', { empId, requestId, newStatus });
       const result = await updateStatus({
         variables: { empId, requestId, status: newStatus },
       });
-      console.log('Update result:', result);
     } catch (error) {
-      console.error('Error updating status:', error);
       if (error.graphQLErrors) {
         error.graphQLErrors.forEach(({ message, locations, path }) => {
-          console.error(
-            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-          );
         });
       }
       if (error.networkError) {
         console.error('[Network error]:', error.networkError);
       }
-      // Display error to user
       alert(`Failed to update status: ${error.message}`);
     }
   };
   
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 

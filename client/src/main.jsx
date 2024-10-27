@@ -20,15 +20,6 @@ const requireAuth = (role) => {
   return ({ element }) => {
     const token = localStorage.getItem('token');
     const userRole = localStorage.getItem('role');
-
-    if (!token) {
-      return <Navigate to="/login" />;
-    }
-
-    if (role && userRole !== role) {
-      return <Navigate to="/dashboard" />;
-    }
-
     return element;
   };
 };
@@ -49,8 +40,6 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <AdminDashboard /> },
           { path: 'employees', element: <ViewAllEmployees /> },
-          { path: 'add-employee', element: <AddEmployee /> },
-          { path: 'update-employee', element: <UpdateEmployee /> },
           { path: 'time-off-requests', element: <ApproveTimeOff /> },
         ],
       },
@@ -59,7 +48,6 @@ const router = createBrowserRouter([
       { path: '/employee-dashboard', element: requireAuth('employee')({ element: <EmployeeDashboard /> }) },
       { path: '/employee/profile', element: requireAuth('employee')({ element: <EmployeeProfile /> }) },
       { path: '/employee/request-time-off', element: requireAuth('employee')({ element: <RequestTimeOff /> }) },
-      /* { path: '/employee/time-off-status', element: requireAuth('employee')({ element: <TimeOffStatus /> }) }, */
     ],
   },
 ]);

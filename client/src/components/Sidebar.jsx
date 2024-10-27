@@ -1,7 +1,13 @@
 import React from 'react';
 import { List, ListItem, ListItemText, Drawer, Divider, Typography, ListItemButton } from '@mui/material';
 import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 
+
+
+const handleLogout = () => {
+  Auth.logout();
+};
 const Sidebar = ({ menuItems }) => {
   return (
     <Drawer
@@ -20,6 +26,9 @@ const Sidebar = ({ menuItems }) => {
               <ListItemText primary={item.name} />
             </ListItemButton>
           ))}
+          <ListItemButton component={Link} to="/login" onClick={handleLogout} >
+            <ListItemText primary="Logout" />
+          </ListItemButton>
         </List>
       </div>
     </Drawer>

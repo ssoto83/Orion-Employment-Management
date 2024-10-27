@@ -65,6 +65,7 @@ const ViewAllEmployees = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   const columns = [
+    {name: "_id", label: "User ID" },
     { name: "firstName", label: "First Name" },
     { name: "lastName", label: "Last Name" },
     { name: "email", label: "Email" },

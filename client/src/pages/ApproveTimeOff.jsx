@@ -90,7 +90,7 @@ const ApproveTimeOff = () => {
               <Button 
                 variant="contained" 
                 color="success" 
-                onClick={() => handleStatusUpdate(request.empId, request._id, 'Approved')}
+                onClick={() => handleStatusUpdate(request.empId, request._id, 'approved')}
                 style={{ marginRight: '8px' }}
               >
                 Approve
@@ -98,7 +98,7 @@ const ApproveTimeOff = () => {
               <Button 
                 variant="contained" 
                 color="error" 
-                onClick={() => handleStatusUpdate(request.empId, request._id, 'Denied')}
+                onClick={() => handleStatusUpdate(request.empId, request._id, 'denied')}
               >
                 Deny
               </Button>

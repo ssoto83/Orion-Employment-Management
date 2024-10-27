@@ -1,10 +1,10 @@
+// ApproveTimeOff.js
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ALLREQUESTS } from '../graphql/queries';
 import { UPDATE_TIMEOFFREQUEST_STATUS } from '../graphql/mutations';
-import MUIDataTable from "mui-datatables";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Button, Chip } from '@mui/material';
+import TableDesign from '../components/TableData';
 
 const ApproveTimeOff = () => {
   const { loading, error, data } = useQuery(GET_ALLREQUESTS);
@@ -12,15 +12,15 @@ const ApproveTimeOff = () => {
   const [updateStatus] = useMutation(UPDATE_TIMEOFFREQUEST_STATUS, {
     refetchQueries: [{ query: GET_ALLREQUESTS }],
   });
+
   const handleStatusUpdate = async (empId, requestId, newStatus) => {
     try {
-      const result = await updateStatus({
+      await updateStatus({
         variables: { empId, requestId, status: newStatus },
       });
     } catch (error) {
       if (error.graphQLErrors) {
-        error.graphQLErrors.forEach(({ message, locations, path }) => {
-        });
+        error.graphQLErrors.forEach(({ message }) => console.error(message));
       }
       if (error.networkError) {
         console.error('[Network error]:', error.networkError);
@@ -36,7 +36,7 @@ const ApproveTimeOff = () => {
     employee.timeOffRequests.map(request => ({
       ...request,
       employeeName: `${employee.firstName} ${employee.lastName}`,
-      empId: employee._id, // Add this line to include the employee ID
+      empId: employee._id,
     }))
   );
 
@@ -101,34 +101,12 @@ const ApproveTimeOff = () => {
     },
   ];
 
-  const options = {
-    filterType: 'checkbox',
-    responsive: 'standard',
-  };
-
-  const theme = createTheme({
-    components: {
-      MUIDataTableBodyCell: {
-        styleOverrides: {
-          root: {
-            padding: '16px',
-          },
-        },
-      },
-    },
-  });
-
-  console.log('Flattened Data:', flattenedData);
-
   return (
-    <ThemeProvider theme={theme}>
-      <MUIDataTable
-        title={"Employee Time Off Requests"}
-        data={flattenedData}
-        columns={columns}
-        options={options}
-      />
-    </ThemeProvider>
+    <TableDesign 
+      title="Employee Time Off Requests"
+      data={flattenedData}
+      columns={columns}
+    />
   );
 };
 

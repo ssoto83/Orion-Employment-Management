@@ -118,6 +118,9 @@ const ViewAllEmployees = () => {
         email: '',
         position: '',
         pay: '',
+        phoneNumber:'',
+        address:'',
+        ssn:'',
         startDate: new Date().toISOString().split('T')[0],
       });
     } catch (error) {

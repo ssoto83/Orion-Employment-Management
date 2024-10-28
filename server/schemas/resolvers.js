@@ -65,7 +65,7 @@ const resolvers = {
         console.log("User found:", user ? "Yes" : "No");
 
         if (!user) {
-          throw new AuthenticationError("Incorrect credentials");
+          throw AuthenticationError("Incorrect credentials");
         }
 
         // Check password
@@ -74,7 +74,7 @@ const resolvers = {
         console.log("Password correct:", correctPw ? "Yes" : "No");
 
         if (!correctPw) {
-          throw new AuthenticationError("Incorrect credentials");
+          throw AuthenticationError("Incorrect credentials");
         }
 
         // Generate token

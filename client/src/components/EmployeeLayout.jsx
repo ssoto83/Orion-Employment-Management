@@ -21,11 +21,12 @@ const AdminLayout = () => {
                 return;
             }
 
+            /* const profile = Auth.getProfile(); */
             if (user) {
                 setUserData({
-                    name: user.username || 'User',
+                    name: user.username || 'User', // Fallback chain
                     email: user.email,
-                    role: 'Admin'
+                    role: 'Employee'
                 });
             }
             setIsLoading(false);
@@ -36,9 +37,8 @@ const AdminLayout = () => {
 
     console.log(userData)
     const menuItems = [
-        { name: 'Dashboard', link: '/admin' },
-        { name: 'View All Employees', link: '/admin/employees' },
-        { name: 'Approve Time Off Requests', link: '/admin/time-off-requests' },
+        { name: 'Employee Profile', link: '/employee/profile' },
+          { name: 'Request Time Off', link: '/employee/request-time-off' }
     ];
 
     if (isLoading) {

@@ -8,12 +8,10 @@ import AdminLayout from './components/AdminLayout.jsx'; // Import AdminLayout
 import AdminDashboard from './pages/AdminDashboard.jsx';
 import EmployeeDashboard from './pages/EmployeeDashboard.jsx';
 import ViewAllEmployees from './pages/ViewAllEmployees.jsx';
-import AddEmployee from './pages/AddEmployee.jsx';
-import UpdateEmployee from './pages/UpdateEmployee.jsx';
+import EmployeeLayout from './components/EmployeeLayout.jsx'
 import ApproveTimeOff from './pages/ApproveTimeOff.jsx';
 import EmployeeProfile from './pages/EmployeeProfile.jsx';
-import RequestTimeOff from './pages/RequestTimeOff.jsx';
-import TimeOffStatus from './pages/TimeOffStatus.jsx';
+import RequestTimeOff from './pages/RequestTimeOff.jsx';;
 import LoginSignup from './components/LoginSignup.jsx';
 
 const requireAuth = (role) => {
@@ -43,11 +41,16 @@ const router = createBrowserRouter([
           { path: 'time-off-requests', element: <ApproveTimeOff /> },
         ],
       },
-
       // Employee routes
-      { path: '/employee-dashboard', element: requireAuth('employee')({ element: <EmployeeDashboard /> }) },
-      { path: '/employee/profile', element: requireAuth('employee')({ element: <EmployeeProfile /> }) },
-      { path: '/employee/request-time-off', element: requireAuth('employee')({ element: <RequestTimeOff /> }) },
+      {
+        path: '/employee',
+        element: requireAuth('employee')({ element: <EmployeeLayout /> }),
+        children: [
+          { index: true, element: <EmployeeDashboard /> },
+          { path: '/employee/profile', element: <EmployeeProfile /> },
+          { path: '/employee/request-time-off', element: <RequestTimeOff /> },
+        ],
+      },
     ],
   },
 ]);

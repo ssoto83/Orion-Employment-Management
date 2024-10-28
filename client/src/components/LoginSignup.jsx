@@ -13,7 +13,7 @@ const LoginSignup = () => {
       if (localStorage.getItem('role') === 'admin') {
         navigate('/admin');
       } else {
-        navigate('/employee-dashboard');
+        navigate('/employee');
       }
     }
   },[])
@@ -60,7 +60,7 @@ const LoginSignup = () => {
       if (user.isAdmin) {
         navigate('/admin');
       } else {
-        navigate('/employee-dashboard');
+        navigate('/employee');
       }
     } catch (error) {
       setErrorMessage(error.message);
@@ -86,7 +86,7 @@ const LoginSignup = () => {
       if (user.isAdmin) {
         navigate('/admin');
       } else {
-        navigate('/employee-dashboard');
+        navigate('/employee');
       }
     } catch (error) {
       setErrorMessage(error.message);

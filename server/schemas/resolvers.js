@@ -104,7 +104,7 @@ const resolvers = {
     // Signup mutation
     signup: async (_, { username, password, email }) => {
       const employee = await Employee.findOne({ email });
-      if (employee) {
+      if (!employee) {
         throw AuthenticationError;
       }
 
@@ -156,11 +156,11 @@ const resolvers = {
     // Terminate an employee (only accessible to admin)
     terminateEmployee: async (_, { empId }, context) => {
       if (context.user) {
-        const employee = await Employee.findOneAndDelete({_id: empId});
-        if (employee.user?._id){
-          await User.findOneAndDelete({ _id: employee.user._id});
+        const employee = await Employee.findOneAndDelete({ _id: empId });
+        if (employee.user?._id) {
+          await User.findOneAndDelete({ _id: employee.user._id });
         }
-        return employee
+        return employee;
       }
       throw AuthenticationError;
     },

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Box, Container, Paper, CircularProgress } from '@mui/material';
-import { GET_ME } from '../graphql/queries';
+import { GET_ME, GET_EMPLOYEE_BY_ID } from '../graphql/queries';
 import { useQuery } from '@apollo/client';
 import Sidebar from './Sidebar';
 import Auth from '../utils/auth'; // Your existing AuthService
@@ -9,9 +9,11 @@ import Auth from '../utils/auth'; // Your existing AuthService
 const AdminLayout = () => {
     const navigate = useNavigate();
     const {loading,data} = useQuery(GET_ME)
+    const {loading:empLoading,data:empData} = useQuery(GET_EMPLOYEE_BY_ID)
     const [isLoading, setIsLoading] = React.useState(true);
     const [userData, setUserData] = React.useState(null);
     const user = data?.me
+    const employee = empData?.employee
 
     useEffect(() => {
         // Check authentication and get user profile
@@ -22,9 +24,9 @@ const AdminLayout = () => {
             }
 
             /* const profile = Auth.getProfile(); */
-            if (user) {
+            if (user || employee) {
                 setUserData({
-                    name: user.username || 'User', // Fallback chain
+                    name: `${employee?.firstName} ${employee?.lastName}` || user.username || 'User', // Fallback chain
                     email: user.email,
                     role: 'Employee'
                 });
@@ -33,7 +35,7 @@ const AdminLayout = () => {
         };
 
         checkAuth();
-    }, [loading]);
+    }, [loading,empLoading]);
 
     console.log(userData)
     const menuItems = [

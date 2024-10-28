@@ -1,35 +1,39 @@
-#root {
-  /* max-width: 1280px; */
+/* #root {
+  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+} */
 
-.home {
+/* .home {
   height: 100vh;
-  background-image: url('/project3_bg.png');
+  background-image: url('../assets/Orion-background.png'); 
   background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+}*/
 
-.header {
+/* .header {
   position: absolute;
   top: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 20px;
-}
-
+} */
+/* 
 .logo {
   margin-left: 40px;
 }
 
 .menu {
   margin-right: 40px;
-}
+} */
 
+/* .login-home {
+  display: flex;
+  justify-content: end;
 
+} */

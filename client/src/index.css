@@ -1,4 +1,4 @@
-
+/* 
 .homepage {
   height: 100vh;
   background-image: url('../assets/project3_bg.png');
@@ -7,23 +7,29 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
-.header {
+/* .header {
   position: absolute;
   top: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 20px;
-}
+} */
 
-.logo {
+/* .logo {
   margin-left: 40px;
 }
 
 .menu {
   margin-right: 40px;
+} */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .form-input {

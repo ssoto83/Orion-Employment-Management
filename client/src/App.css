@@ -5,7 +5,7 @@
   text-align: center;
 } */
 
-.home {
+/* .home {
   height: 100vh;
   background-image: url('roject3_bg.png');
   background-size: cover;
@@ -13,7 +13,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .header {
   position: absolute;
@@ -32,12 +32,12 @@
   margin-right: 40px;
 }
 
-.loginpage {
+/* .loginpage {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 100px;
-}
+} 
 
 .login-box h2 {
   color: '#f57369';
@@ -49,14 +49,14 @@
   border-radius: 8px;
   width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+}*/
 
 .error-message {
   color: red;
   margin-bottom: 10px;
 }
 
-.login-box {
+/*.login-box {
   border: 2px solid #3ca7c2;
 }
 
@@ -64,7 +64,7 @@
   border: 2px solid #3ca7c2;
 }
 
-/* // React App default styles
+ // React App default styles
 .logo {
   height: 6em;
   padding: 1.5em;

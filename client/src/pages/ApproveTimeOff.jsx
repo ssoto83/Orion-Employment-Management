@@ -2,7 +2,8 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ALLREQUESTS } from '../graphql/queries';
 import { UPDATE_TIMEOFFREQUEST_STATUS } from '../graphql/mutations';
-import MUIDataTable from "mui-datatables";
+/* import MUIDataTable from "mui-datatables"; */
+import { DataGrid } from '@mui/x-data-grid';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Button, Chip } from '@mui/material';
 

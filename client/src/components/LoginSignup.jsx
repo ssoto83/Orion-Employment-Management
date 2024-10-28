@@ -94,7 +94,7 @@ const LoginSignup = () => {
   };
   return (
     <Box className="login-signup-container" sx={{ width: '100%', maxWidth: 500, mx: 'auto', mt: 4 }}>
-      <Tabs value={tabIndex} onChange={handleTabChange} centered>
+      <Tabs value={tabIndex} onChange={handleTabChange} centered >
         <Tab label="Login" />
         <Tab label="Sign Up" />
       </Tabs>
@@ -102,7 +102,7 @@ const LoginSignup = () => {
       {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
       {/* Login Form */}
       {tabIndex === 0 && (
-        <Box sx={{ mt: 2 }}>
+        <Box sx={{ mt: 2}}>
           <Typography variant="h5" gutterBottom>Login</Typography>
           <form onSubmit={handleLoginSubmit}>
             <TextField
@@ -133,7 +133,7 @@ const LoginSignup = () => {
               margin="normal"
               variant="outlined"
             />
-            <Button fullWidth variant="contained" color="primary" sx={{ mt: 2 }} type="submit">
+            <Button fullWidth variant="contained" color="primary" sx={{ mt: 2/* , backgroundColor:"#fff" */ }} type="submit">
               Login
             </Button>
           </form>

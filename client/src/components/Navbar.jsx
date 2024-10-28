@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { UserCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import './Navbar.css'
+import { red, yellow } from '@mui/material/colors';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -35,7 +37,7 @@ const Navbar = () => {
   }
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#1976d2' }}>
+    <AppBar position="static"  /* sx={{backgroundColor:'#000000'}} */>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Box display="flex" alignItems="center">
           <img

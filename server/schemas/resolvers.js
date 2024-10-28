@@ -104,7 +104,7 @@ const resolvers = {
     // Signup mutation
     signup: async (_, { username, password, email }) => {
       const employee = await Employee.findOne({ email });
-      if (!employee) {
+      if (employee) {
         throw AuthenticationError;
       }
 

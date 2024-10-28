@@ -67,13 +67,7 @@ const EmployeeProfile = () => {
     return (
         <div style={{ display: 'flex' }}>
         {/* Sidebar with Employee-specific menu items */}
-        <Sidebar
-          menuItems={[
-            { name: 'Employee Profile', link: '/employee/profile' },
-            { name: 'Request Time Off', link: '/employee/request-time-off' },
-            /* { name: 'View Time Off Status', link: '/employee/time-off-status' }, */
-          ]}
-        />
+        
         <div style={{ flexGrow: 1, padding: '20px' }}>
         <h1>Loading Employee Information...</h1>
         </div>
@@ -84,13 +78,7 @@ const EmployeeProfile = () => {
     return (
       <div style={{ display: 'flex' }}>
         {/* Sidebar with Employee-specific menu items */}
-        <Sidebar
-          menuItems={[
-            { name: 'Employee Profile', link: '/employee/profile' },
-            { name: 'Request Time Off', link: '/employee/request-time-off' },
-            /* { name: 'View Time Off Status', link: '/employee/time-off-status' }, */
-          ]}
-        />
+        
         <div style={{ flexGrow: 1, padding: '20px' }}>
   
         <Box sx={{ padding: "20px" }}>

@@ -38,6 +38,7 @@ const getIcon = (name) => {
 };
 
 const Sidebar = ({ menuItems, user }) => {
+  console.log(user)
   // Function to get initials from name
   const getInitials = (name) => {
     return name

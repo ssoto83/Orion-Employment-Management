@@ -73,14 +73,14 @@ https://orion-employment-management.onrender.com
 
 ## Application Screenshots
 
-![Orion Homepage](../assets/homepage.png)  
-![Orion Login page](../assets/loginPage.png)  
-![Orion All employees](../assets/allEmployees.png)  
-![Orion Add Employee](../assets/addEmployee.png)  
-![Orion Time Off Requests](../assets/employeeTimeOffRequest.png)  
-![Orion Employee Update](../assets/employeeUpdate.png)    
-![Orion Employee Profile](../assets/employeeProfile.png)   
-![Orion Employee Requests](../assets/employeeRequests.png)     
+![Orion Homepage](./assets/homepage.png)  
+![Orion Login page](./assets/loginPage.png)  
+![Orion All employees](./assets/allEmployees.png)  
+![Orion Add Employee](./assets/addEmployee.png)  
+![Orion Time Off Requests](./assets/employeeTimeOffRequest.png)  
+![Orion Employee Update](./assets/employeeUpdate.png)    
+![Orion Employee Profile](./assets/employeeProfile.png)   
+![Orion Employee Requests](./assets/employeeRequests.png)     
 
 
 ## License
